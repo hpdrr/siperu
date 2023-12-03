@@ -29,13 +29,13 @@
                 </div>
                 <div class="card-body">
                   <form role="form" class="text-start">
-                    <div class="input-group input-group-outline my-3">
-                      <label class="form-label"></label>
-                      <input type="email" class="form-control" placeholder="Username" />
+                    <div class="form-floating input-group input-group-outline my-3">
+                      <input type="email" class="form-control" id="floatingInput" placeholder="Username" />
+                      <label for="floatingInput" class="ps-3">Username</label>
                     </div>
-                    <div class="input-group input-group-outline mb-3">
-                      <label class="form-label"></label>
-                      <input type="password" class="form-control" placeholder="Password" />
+                    <div class="form-floating input-group input-group-outline mb-3">
+                      <input type="password" class="form-control" id="floatingPassword" placeholder="Password" />
+                      <label for="floatingOassword" class="ps-3">Password</label>
                     </div>
                     <div class="form-check form-switch d-flex align-items-center mb-3">
                       <input class="form-check-input" type="checkbox" id="rememberMe" checked />
