@@ -15,7 +15,7 @@ use Illuminate\Support\ViewErrorBag;
 */
 
 Route::get('/', function () {
-    return view('layouts.main');
+    return view('welcome');
 });
 
 Route::get('/login', function () {

@@ -2,36 +2,97 @@
 
 @section('title', 'Login')
 @section('container')
-  <!-- Container Start -->
-  <div class="container" id="screen">
-    <div class="row">
-      <!--row Start-->
-      <div class="col-lg-6 login-image d-none d-lg-block my-auto">
-        <img src="{{ asset('assets/img/login-image.png') }}" class="w-100" alt="Labor Software Engineering" />
-      </div>
-      <div class="col-lg-6 my-auto">
-        <!--col-lg-6 Start-->
-        <div id="login">
-          <form action="#">
-            <!-- Form Start -->
-            <h4>Selamat datang di Siperu</h4>
-            <p class="text-muted">Harap masuk untuk menggunakan Siperu</p>
-            <div class="form-floating mb-3">
-              <input type="email" class="form-control" id="floatingInput" placeholder="Enter Email" required />
-              <label for="floatingInput" class="text-muted">Nama Pengguna</label>
+
+  <body class="bg-gray-200">
+    <main class="main-content mt-0">
+      {{-- Setting background Start --}}
+      <div class="page-header align-items-start min-vh-100"
+        style="
+            background-image: url('{{ asset('assets/img/backgrounds/labor SE.jpg') }}');
+          ">
+        <span class="mask bg-gradient-dark opacity-6"></span>
+        {{-- Setting background End --}}
+
+        <div class="container my-auto">
+          <div class="row">
+            <div class="col-lg-4 col-md-8 col-12 mx-auto">
+              <div class="card z-index-0 fadeIn3 fadeInBottom">
+                <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+                  <div class="bg-gradient-primary shadow-primary border-radius-lg py-3 pe-1">
+                    <h1 class="text-center text-white"><i class="fa-regular fa-circle-user"></i></h1>
+                    <div class="row mt-3">
+                      <h4 class="text-white font-weight-bolder text-center mb-2">
+                        Peminjaman Ruangan
+                      </h4>
+                    </div>
+                  </div>
+                </div>
+                <div class="card-body">
+                  <form role="form" class="text-start">
+                    <div class="input-group input-group-outline my-3">
+                      <label class="form-label"></label>
+                      <input type="email" class="form-control" placeholder="Username" />
+                    </div>
+                    <div class="input-group input-group-outline mb-3">
+                      <label class="form-label"></label>
+                      <input type="password" class="form-control" placeholder="Password" />
+                    </div>
+                    <div class="form-check form-switch d-flex align-items-center mb-3">
+                      <input class="form-check-input" type="checkbox" id="rememberMe" checked />
+                      <label class="form-check-label mb-0 ms-3" for="rememberMe">Remember me</label>
+                    </div>
+                    <div class="text-center">
+                      <button type="button" class="btn bg-gradient-primary w-100 my-4 mb-2">
+                        Sign in
+                      </button>
+                    </div>
+                    <p class="mt-4 text-sm text-center">
+                      Don't have an account?
+                      <a href="../pages/sign-up.html" class="text-primary text-gradient font-weight-bold">Sign up</a>
+                    </p>
+                  </form>
+                </div>
+              </div>
             </div>
-            <div class="form-floating mb-2">
-              <input type="password" class="form-control" id="floatingPassword" placeholder="Enter Password" required />
-              <label for="floatingPassword" class="text-muted">Kata Sandi</label>
-            </div>
-            <button type="submit" class="btn btn-login">Masuk</button>
-          </form>
-          <!-- Form End -->
+          </div>
         </div>
+        <footer class="footer position-absolute bottom-2 py-2 w-100">
+          <div class="container">
+            <div class="row align-items-center justify-content-lg-between">
+              <div class="d-flex justify-content-center my-auto">
+                <div class="copyright text-center text-sm text-white text-lg-start">
+                  Siperu
+                  ©
+                  <script>
+                    document.write(new Date().getFullYear());
+                  </script>
+                </div>
+              </div>
+            </div>
+          </div>
+        </footer>
       </div>
-      <!--col-lg-6 End-->
-    </div>
-    <!--row End-->
-  </div>
-  <!-- Container End-->
+    </main>
+  </body>
+
+@endsection
+@section('script')
+  <!--   Core JS Files   -->
+  <script src="{{ asset('assets/js/core/popper.min.js') }}"></script>
+  <script src="{{ asset('assets/js/core/bootstrap.min.js') }}"></script>
+  <script src="{{ asset('assets/js/plugins/perfect-scrollbar.min.js') }}"></script>
+  <script src="{{ asset('assets/js/plugins/smooth-scrollbar.min.js') }}"></script>
+  <script>
+    let win = navigator.platform.indexOf("Win") > -1;
+    if (win && document.querySelector("#sidenav-scrollbar")) {
+      let options = {
+        damping: "0.5",
+      };
+      Scrollbar.init(document.querySelector("#sidenav-scrollbar"), options);
+    }
+  </script>
+  <!-- Github buttons -->
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+  <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
+  <script src="{{ asset('assets/js/material-dashboard.min.js?v=3.1.0') }}"></script>
 @endsection
