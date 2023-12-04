@@ -1,9 +1,9 @@
 @extends('layouts.main')
 
 @section('title', 'Login')
-@section('container')
 
-  <body class="bg-gray-200">
+<body class="bg-gray-200">
+  @section('container')
     <main class="main-content mt-0">
       {{-- Setting background Start --}}
       <div class="page-header align-items-start min-vh-100"
@@ -35,7 +35,7 @@
                     </div>
                     <div class="form-floating input-group input-group-outline mb-3">
                       <input type="password" class="form-control" id="floatingPassword" placeholder="Password" />
-                      <label for="floatingOassword" class="ps-3">Password</label>
+                      <label for="floatingPassword" class="ps-3">Password</label>
                     </div>
                     <div class="form-check form-switch d-flex align-items-center mb-3">
                       <input class="form-check-input" type="checkbox" id="rememberMe" checked />
@@ -56,43 +56,27 @@
             </div>
           </div>
         </div>
-        <footer class="footer position-absolute bottom-2 py-2 w-100">
-          <div class="container">
-            <div class="row align-items-center justify-content-lg-between">
-              <div class="d-flex justify-content-center my-auto">
-                <div class="copyright text-center text-sm text-white text-lg-start">
-                  Siperu
-                  ©
-                  <script>
-                    document.write(new Date().getFullYear());
-                  </script>
-                </div>
-              </div>
-            </div>
-          </div>
-        </footer>
       </div>
     </main>
-  </body>
-
-@endsection
-@section('script')
-  <!--   Core JS Files   -->
-  <script src="{{ asset('assets/js/core/popper.min.js') }}"></script>
-  <script src="{{ asset('assets/js/core/bootstrap.min.js') }}"></script>
-  <script src="{{ asset('assets/js/plugins/perfect-scrollbar.min.js') }}"></script>
-  <script src="{{ asset('assets/js/plugins/smooth-scrollbar.min.js') }}"></script>
-  <script>
-    let win = navigator.platform.indexOf("Win") > -1;
-    if (win && document.querySelector("#sidenav-scrollbar")) {
-      let options = {
-        damping: "0.5",
-      };
-      Scrollbar.init(document.querySelector("#sidenav-scrollbar"), options);
-    }
-  </script>
-  <!-- Github buttons -->
-  <script async defer src="https://buttons.github.io/buttons.js"></script>
-  <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
-  <script src="{{ asset('assets/js/material-dashboard.min.js?v=3.1.0') }}"></script>
-@endsection
+  @endsection
+  @section('script')
+    <!--   Core JS Files   -->
+    <script src="{{ asset('assets/js/core/popper.min.js') }}"></script>
+    <script src="{{ asset('assets/js/core/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('assets/js/plugins/perfect-scrollbar.min.js') }}"></script>
+    <script src="{{ asset('assets/js/plugins/smooth-scrollbar.min.js') }}"></script>
+    <script>
+      let win = navigator.platform.indexOf("Win") > -1;
+      if (win && document.querySelector("#sidenav-scrollbar")) {
+        let options = {
+          damping: "0.5",
+        };
+        Scrollbar.init(document.querySelector("#sidenav-scrollbar"), options);
+      }
+    </script>
+    <!-- Github buttons -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
+    <script src="{{ asset('assets/js/material-dashboard.min.js?v=3.1.0') }}"></script>
+  @endsection
+</body>
