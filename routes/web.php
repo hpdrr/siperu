@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\RegisterController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ViewErrorBag;
 
@@ -15,17 +17,17 @@ use Illuminate\Support\ViewErrorBag;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+  return view('welcome');
 });
 
-Route::get('/login', function () {
-    return view('login');
-});
+Route::get('/login', [LoginController::class, 'index']);
+
+Route::get('/register', [RegisterController::class, 'index']);
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
+  return view('dashboard');
 });
 
 Route::get('/table', function () {
-    return view('tables');
+  return view('tables');
 });

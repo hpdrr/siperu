@@ -1,6 +1,6 @@
 @extends('layouts.signin')
 
-@section('title', 'Login')
+{{-- @section('title', 'Login') --}}
 
 <body class="bg-gray-200">
   @section('container')
@@ -38,17 +38,17 @@
                       <label for="floatingPassword" class="ps-3">Password</label>
                     </div>
                     <div class="form-check form-switch d-flex align-items-center mb-3">
-                      <input class="form-check-input" type="checkbox" id="rememberMe" checked />
+                      <input class="form-check-input" type="checkbox" id="rememberMe" />
                       <label class="form-check-label mb-0 ms-3" for="rememberMe">Remember me</label>
                     </div>
                     <div class="text-center">
                       <button type="button" class="btn bg-gradient-primary w-100 my-4 mb-2">
-                        Sign in
+                        Masuk
                       </button>
                     </div>
                     <p class="mt-4 text-sm text-center">
-                      Don't have an account?
-                      <a href="../pages/sign-up.html" class="text-primary text-gradient font-weight-bold">Sign up</a>
+                      Belum punya akun?
+                      <a href="/register" class="text-primary text-gradient font-weight-bold">Daftar</a>
                     </p>
                   </form>
                 </div>
