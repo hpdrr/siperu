@@ -31,7 +31,7 @@
         aria-hidden="true" id="iconSidenav"></i>
       <a class="navbar-brand m-0" href=" https://demos.creative-tim.com/material-dashboard/pages/dashboard "
         target="_blank">
-        <img src="../assets/img/logo-ct.png" class="navbar-brand-img h-100" alt="main_logo" />
+        <img src="{{ asset('assets/img/Logo-SIF-noBg.png') }}" class="navbar-brand-img h-100" alt="main_logo" />
         <span class="ms-1 font-weight-bold text-white">Siperu</span>
       </a>
     </div>
@@ -49,9 +49,9 @@
         <li class="nav-item">
           <a class="nav-link text-white @yield('table-active')" href="/table">
             <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="material-icons opacity-10">description</i>
+              <i class="material-icons opacity-10">format_list_bulleted</i>
             </div>
-            <span class="nav-link-text ms-1">Tables</span>
+            <span class="nav-link-text ms-1">Daftar peminjaman</span>
           </a>
         </li>
         <li class="nav-item">
@@ -124,10 +124,10 @@
               <a class="opacity-5 text-dark" href="javascript:;">Pages</a>
             </li>
             <li class="breadcrumb-item text-sm text-dark active" aria-current="page">
-              Dashboard
+              @yield('title')
             </li>
           </ol>
-          <h6 class="font-weight-bolder mb-0">Dashboard</h6>
+          <h6 class="font-weight-bolder mb-0">@yield('title')</h6>
         </div>
         <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
           <div class="ms-md-auto pe-md-3 d-flex align-items-center">

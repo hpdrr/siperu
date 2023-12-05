@@ -9,7 +9,7 @@
       <div class="card-header p-3 pt-2">
         <div
           class="icon icon-lg icon-shape bg-gradient-primary shadow-primary text-center border-radius-xl mt-n4 position-absolute">
-          <i class="fa-solid fa-building opacity-10"></i>
+          <i class="material-icons opacity-10">meeting_room</i>
         </div>
         <div class="text-end pt-1">
           <p class="text-sm mb-0 text-capitalize">Total Ruangan</p>
@@ -49,7 +49,7 @@
       <div class="card-header p-3 pt-2">
         <div
           class="icon icon-lg icon-shape bg-gradient-warning shadow-info text-center border-radius-xl mt-n4 position-absolute">
-          <i class="fa-solid fa-exclamation opacity-10"></i>
+          <i class="material-icons opacity-10">pending</i>
         </div>
         <div class="text-end pt-1">
           <p class="text-sm mb-0 text-capitalize">Menunggu Persetujuan</p>
