@@ -30,20 +30,20 @@
                     </p>
                   </div>
                   <div class="card-body mt-0">
-                    <form role="form">
+                    <form action="/register" method="POST">
+                      @csrf
                       <div class="form-floating input-group input-group-outline mb-3">
-                        <input type="text" inputmode="numeric" pattern="[0-9\s]{13,19}" autocomplete="cc-number"
-                          maxlength="11" class="form-control" id="floatingInput" placeholder="Nim" required
-                          onkeypress="return onlyNumberKey(event)" />
-                        <label for="floatingInput" class="ps-3">Nim</label>
+                        <input type="text" name="nim" maxlength="11" class="form-control" id="nim"
+                          placeholder="Nim" required onkeypress="return onlyNumberKey(event)" />
+                        <label for="nim" class="ps-3">Nim</label>
                       </div>
                       <div class="form-floating input-group input-group-outline mb-3">
-                        <input type="password" class="form-control" id="floatingPassword" placeholder="Password"
+                        <input type="password" name="password" class="form-control" id="password" placeholder="Password"
                           required />
-                        <label for="floatingPassword" class="ps-3">Password</label>
+                        <label for="password" class="ps-3">Password</label>
                       </div>
                       <div class="text-center">
-                        <button type="button" class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0">
+                        <button type="submit" class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0">
                           Daftar
                         </button>
                       </div>
