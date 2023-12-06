@@ -84,13 +84,24 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-white py-3" href="../pages/sign-in.html">
+          <form action="/logout" method="POST">
+            @csrf
+            <button class="btn nav-link text-white py-3">
+              <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                <i class="material-icons opacity-10">logout</i>
+              </div>
+              <span class="nav-link-text ms-1">Logout</span>
+            </button>
+          </form>
+        </li>
+        {{-- <li class="nav-item">
+          <a class="nav-link text-white py-3" type="submit">
             <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
               <i class="material-icons opacity-10">logout</i>
             </div>
             <span class="nav-link-text ms-1">Logout</span>
           </a>
-        </li>
+        </li> --}}
       </ul>
     </div>
     </div>

@@ -13,7 +13,6 @@
           ">
         <span class="mask bg-gradient-dark opacity-6"></span>
         {{-- Setting background End --}}
-
         <div class="container my-auto">
           <div class="row">
             <div class="col-lg-4 col-md-8 col-12 mx-auto">
