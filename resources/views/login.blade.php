@@ -28,10 +28,19 @@
                   </div>
                 </div>
                 <div class="card-body">
+                  {{-- flashing start --}}
+                  @if (session()->has('success'))
+                    <div class="alert alert-success alert-dismissible fade show" style="z-index: 99" role="alert">
+                      {{ session('success') }}
+                      <button type="button" class="btn-close material-icons" data-bs-dismiss="alert"
+                        aria-label="Close">close</button>
+                    </div>
+                  @endif
+                  {{-- flashin end --}}
                   <form role="form" class="text-start">
                     <div class="form-floating input-group input-group-outline my-3">
-                      <input type="email" name="username" class="form-control" id="username" placeholder="Username" />
-                      <label for="username" class="ps-3">Username</label>
+                      <input type="email" name="nim" class="form-control" id="nim" placeholder="nim" />
+                      <label for="nim" class="ps-3">nim</label>
                     </div>
                     <div class="form-floating input-group input-group-outline mb-3">
                       <input type="password" name="password" class="form-control" id="password" placeholder="Password" />
@@ -74,9 +83,5 @@
         Scrollbar.init(document.querySelector("#sidenav-scrollbar"), options);
       }
     </script>
-    <!-- Github buttons -->
-    <script async defer src="https://buttons.github.io/buttons.js"></script>
-    <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
-    <script src="{{ asset('assets/js/material-dashboard.min.js?v=3.1.0') }}"></script>
   @endsection
 </body>

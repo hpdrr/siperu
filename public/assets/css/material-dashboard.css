@@ -3569,6 +3569,7 @@ textarea.form-control.is-valid {
     background-repeat: no-repeat;
     background-position: right 0.75rem center;
     background-size: 1rem 1rem;
+    z-index: 9999;
 }
 
 .was-validated .form-control:invalid:focus,

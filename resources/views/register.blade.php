@@ -2,7 +2,7 @@
 
 @section('container')
 
-  <body class="">
+  <body>
     <main class="main-content mt-0">
       <section>
         <div class="page-header min-vh-100">
@@ -29,18 +29,41 @@
                       Masukkan NIM dan Password untuk mendaftar
                     </p>
                   </div>
-                  <div class="card-body mt-0">
+                  <div class="card-body mt-0 form-registration">
                     <form action="/register" method="POST">
                       @csrf
-                      <div class="form-floating input-group input-group-outline mb-3">
-                        <input type="text" name="nim" maxlength="11" class="form-control" id="nim"
-                          placeholder="Nim" required onkeypress="return onlyNumberKey(event)" />
-                        <label for="nim" class="ps-3">Nim</label>
+                      <div class="form-floating my-3 input-group input-group-outline">
+                        <input type="text" name="nama" maxlength="11"
+                          class="form-control @error('nama') is-invalid @enderror" id="nama" placeholder="nama"
+                          required value="{{ old('nama') }}" />
+                        <label for="nama" class="ps-3">nama</label>
+                        @error('nama')
+                          <div class="invalid-feedback">
+                            {{ $message }}
+                          </div>
+                        @enderror
                       </div>
-                      <div class="form-floating input-group input-group-outline mb-3">
-                        <input type="password" name="password" class="form-control" id="password" placeholder="Password"
-                          required />
+                      <div class="form-floating my-3 input-group input-group-outline">
+                        <input type="text" name="nim" maxlength="11"
+                          class="form-control @error('nim') is-invalid @enderror" id="nim" placeholder="Nim"
+                          required value="{{ old('nim') }}" onkeypress="return onlyNumberKey(event)" />
+                        <label for="nim" class="ps-3">Nim</label>
+                        @error('nim')
+                          <div class="invalid-feedback">
+                            {{ $message }}
+                          </div>
+                        @enderror
+                      </div>
+                      <div class="form-floating input-group input-group-outline">
+                        <input type="password" name="password"
+                          class="form-control @error('password') is-invalid @enderror" id="password"
+                          placeholder="Password" required value />
                         <label for="password" class="ps-3">Password</label>
+                        @error('password')
+                          <div class="invalid-feedback">
+                            {{ $message }}
+                          </div>
+                        @enderror
                       </div>
                       <div class="text-center">
                         <button type="submit" class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0">
