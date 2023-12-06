@@ -2,8 +2,9 @@
 
 {{-- @section('title', 'Login') --}}
 
-<body class="bg-gray-200">
-  @section('container')
+@section('container')
+
+  <body class="bg-gray-200">
     <main class="main-content mt-0">
       {{-- Setting background Start --}}
       <div class="page-header align-items-start min-vh-100"
@@ -28,7 +29,7 @@
                   </div>
                 </div>
                 <div class="card-body">
-                  {{-- flashing start --}}
+                  {{-- flashing success start --}}
                   @if (session()->has('success'))
                     <div class="alert alert-success alert-dismissible fade show" style="z-index: 99" role="alert">
                       {{ session('success') }}
@@ -36,20 +37,37 @@
                         aria-label="Close">close</button>
                     </div>
                   @endif
-                  {{-- flashin end --}}
-                  <form role="form" class="text-start">
+                  {{-- flashin success end --}}
+                  {{-- flashing login failed start --}}
+                  @if (session()->has('loginError'))
+                    <div class="alert alert-danger alert-dismissible fade show" style="z-index: 99" role="alert">
+                      {{ session('loginError') }}
+                      <button type="button" class="btn-close material-icons" data-bs-dismiss="alert"
+                        aria-label="Close">close</button>
+                    </div>
+                  @endif
+                  {{-- flashin login failedend --}}
+                  <form role="form" class="text-start" action="/login" method="POST">
+                    @csrf
                     <div class="form-floating input-group input-group-outline my-3">
-                      <input type="email" name="nim" class="form-control" id="nim" placeholder="nim" />
-                      <label for="nim" class="ps-3">nim</label>
+                      <input type="text" name="nim" maxlength="11"
+                        class="form-control @error('nim') is-invalid @enderror" value="{{ old('nim') }}" id="nim"
+                        placeholder="Nim" onkeydown="return onlyNumberKey(event)" />
+                      <label for="nim" class="ps-3">Nim</label>
+                      @error('nim')
+                        <div class="invalid-feedback">
+                          {{ $message }}
+                        </div>
+                      @enderror
                     </div>
                     <div class="form-floating input-group input-group-outline mb-3">
                       <input type="password" name="password" class="form-control" id="password" placeholder="Password" />
                       <label for="password" class="ps-3">Password</label>
                     </div>
-                    <div class="form-check form-switch d-flex align-items-center mb-3">
+                    {{-- <div class="form-check form-switch d-flex align-items-center mb-3">
                       <input class="form-check-input" type="checkbox" id="rememberMe" />
                       <label class="form-check-label mb-0 ms-3" for="rememberMe">Remember me</label>
-                    </div>
+                    </div> --}}
                     <div class="text-center">
                       <button type="submit" class="btn bg-gradient-primary w-100 my-4 mb-2">
                         Masuk
@@ -67,21 +85,26 @@
         </div>
       </div>
     </main>
-  @endsection
-  @section('script')
     <!--   Core JS Files   -->
     <script src="{{ asset('assets/js/core/popper.min.js') }}"></script>
     <script src="{{ asset('assets/js/core/bootstrap.min.js') }}"></script>
     <script src="{{ asset('assets/js/plugins/perfect-scrollbar.min.js') }}"></script>
     <script src="{{ asset('assets/js/plugins/smooth-scrollbar.min.js') }}"></script>
     <script>
-      let win = navigator.platform.indexOf("Win") > -1;
+      var win = navigator.platform.indexOf("Win") > -1;
       if (win && document.querySelector("#sidenav-scrollbar")) {
-        let options = {
+        var options = {
           damping: "0.5",
         };
         Scrollbar.init(document.querySelector("#sidenav-scrollbar"), options);
       }
+
+      function onlyNumberKey(evt) {
+        let ASCIICode = (evt.which) ? evt.which : evt.keyCode;
+        if (ASCIICode > 31 && (ASCIICode < 48 || ASCIICode > 57))
+          return false;
+        return true;
+      }
     </script>
-  @endsection
-</body>
+  </body>
+@endsection
