@@ -30,7 +30,17 @@ class DashboardRuanganController extends Controller
    */
   public function store(Request $request)
   {
-    //
+    $room = new Ruangan();
+    // mass assignment
+    $room->create($request->all());
+
+    return redirect('/dashboard/ruangan')->with('status', 'Ruangan berhasil ditambahkan!');
+    // assignment
+    // $room->nama_ruangan = $request->namaRuangan;
+    // $room->kapasitas_ruangan = $request->kapasitasRuangan;
+    // $room->lokasi = $request->lokasiRuangan;
+    // $room->kode_ruangan = $request->kodeRuangan;
+    // $room->save();
   }
 
   /**

@@ -36,7 +36,7 @@ Route::get('/dashboard', function () {
 })->middleware('auth');
 
 
-Route::resource('/ruangan', DashboardRuanganController::class)->middleware('auth');
+Route::resource('/dashboard/ruangan', DashboardRuanganController::class)->middleware('auth');
 
 
 // buatan sendiri
