@@ -27,15 +27,13 @@
           </div>
         @endif
 
-        <button type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop"
-          class="btn btn-dark">Tambah</button>
-        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="1"
-          aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <button type="button" data-bs-toggle="modal" data-bs-target="#modal_add" class="btn btn-dark">Tambah</button>
+        <div class="modal fade" id="modal_add" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="1"
+          aria-labelledby="modal_addLabel" aria-hidden="true">
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
-                <h1 class="modal-title fs-5" id="staticBackdropLabel">Tambah Ruangan</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <h1 class="modal-title fs-5" id="modal_addLabel">Tambah Ruangan</h1>
               </div>
               <div class="modal-body">
                 <form method="POST" action="/dashboard/ruangan">
@@ -58,13 +56,12 @@
                     <label for="lokasi" class="form-label">Lokasi</label>
                     <input type="text" name="lokasi" class="form-control border p-1" id="lokasiRuangan" required>
                   </div>
-                  <button type="submit" class="btn btn-primary">Submit</button>
+                  <button type="submit" class="btn btn-success">Simpan</button>
                 </form>
               </div>
 
               <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Understood</button>
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Batal</button>
               </div>
             </div>
           </div>
@@ -103,8 +100,57 @@
                   </td>
                   <td>
                     <div class="d-flex justify-content-evenly">
-                      <button
-                        class="btn btn-primary btn-sm btn-warning text-white material-icons shadow-none">edit</button>
+                      {{-- <button class="btn btn-primary btn-sm btn-warning text-white material-icons shadow-none">edit</button> --}}
+                      {{-- edit modal --}}
+                      <!-- Button trigger modal -->
+                      <button type="button"
+                        class="btn btn-primary btn-sm btn-warning text-white material-icons shadow-none"
+                        data-bs-toggle="modal" data-bs-target="#modalEdit">
+                        edit
+                      </button>
+
+                      <!-- Modal -->
+                      <div class="modal fade" id="modalEdit" data-bs-backdrop="static" data-bs-keyboard="false"
+                        tabindex="-1" aria-labelledby="modalEditLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h1 class="modal-title fs-5" id="modalEditLabel">Ubah Ruangan</h1>
+                            </div>
+                            <div class="modal-body">
+                              <form method="POST" action="/dashboard/ruangan">
+                                @csrf
+                                <div class="mb-3">
+                                  <label for="kode_ruangan" class="form-label">Kode Ruangan</label>
+                                  <input type="number" name="kode_ruangan" class="form-control border p-1"
+                                    id="kodeRuangan" aria-describedby="kodeHelp" required>
+                                </div>
+                                <div class="mb-3">
+                                  <label for="nama_ruangan" class="form-label">{{ $ruang->nama_ruangan }}</label>
+                                  <input type="text" value="{{ $ruang->nama_ruangan }}" name="nama_ruangan"
+                                    class="form-control border p-1" id="namaRuangan" required>
+                                </div>
+                                <div class="mb-3">
+                                  <label for="kapasitas_ruangan" class="form-label">Kapasitas</label>
+                                  <input type="number" value="{{ $ruang->kapasitas_ruangan }}"
+                                    name="kapasitas_ruangan" class="form-control border p-1" id="kapasitasRuangan"
+                                    required>
+                                </div>
+                                <div class="mb-3">
+                                  <label for="lokasi" class="form-label">Lokasi</label>
+                                  <input type="text" name="lokasi" class="form-control border p-1"
+                                    id="lokasiRuangan" required>
+                                </div>
+                                <button type="submit" class="btn btn-success">Simpan</button>
+                              </form>
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      {{-- edit modal --}}
                       <button
                         class="btn btn-primary btn-sm btn-warning text-white material-icons shadow-none">delete</button>
                     </div>

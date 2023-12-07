@@ -59,7 +59,7 @@ class DashboardRuanganController extends Controller
    */
   public function edit(Ruangan $ruangan)
   {
-    //
+    dd("test");
   }
 
   /**
