@@ -55,7 +55,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-white py-3" href="../pages/billing.html">
+          <a class="nav-link text-white py-3 @yield('ruangan-active')" href="/ruangan">
             <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
               <i class="material-icons opacity-10">room</i>
             </div>
@@ -90,7 +90,7 @@
               <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
                 <i class="material-icons opacity-10">logout</i>
               </div>
-              <span class="nav-link-text ms-1">Logout</span>
+              <span class="ms-1 text-capitalize">Logout</span>
             </button>
           </form>
         </li>

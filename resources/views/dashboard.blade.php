@@ -13,12 +13,12 @@
         </div>
         <div class="text-end pt-1">
           <p class="text-sm mb-0 text-capitalize">Total Ruangan</p>
-          <h4 class="mb-0">7</h4>
+          <h4 class="mb-0">{{ $jumlah_ruangan }}</h4>
         </div>
       </div>
       <hr class="dark horizontal my-0" />
       <div class="card-footer p-3">
-        <a href="#">
+        <a href="\ruangan">
           <p class="mb-0">Lihat detail <i class="fa-solid fa-up-right-from-square"></i></p>
         </a>
       </div>
@@ -69,7 +69,7 @@
     <div class="col-lg-12 col-md-6 mt-4 mb-4">
       <div class="card z-index-2">
         <div class="card-body">
-          <h1 class="mb-0">Selamat Pagi, {{ auth()->user()->nama }}</h1>
+          <h1 class="mb-0">Selamat Pagi, {{ ucfirst(auth()->user()->nama) }}</h1>
           <p class="text-sm">Last Campaign Performance</p>
           <hr class="dark horizontal" />
           <div class="d-flex">
@@ -85,12 +85,6 @@
   {{-- end Footer --}}
 @endsection
 @section('script')
-  <!--   Core JS Files   -->
-  <script src="../assets/js/core/popper.min.js"></script>
-  <script src="../assets/js/core/bootstrap.min.js"></script>
-  <script src="../assets/js/plugins/perfect-scrollbar.min.js"></script>
-  <script src="../assets/js/plugins/smooth-scrollbar.min.js"></script>
-  <script src="../assets/js/plugins/chartjs.min.js"></script>
   <script>
     var win = navigator.platform.indexOf("Win") > -1;
     if (win && document.querySelector("#sidenav-scrollbar")) {

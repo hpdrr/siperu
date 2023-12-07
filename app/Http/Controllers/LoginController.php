@@ -21,6 +21,7 @@ class LoginController extends Controller
       'password' => 'required|min:8'
     ]);
 
+    // Mengarahkan ke dashboard jika login berhasil
     if (Auth::attempt($credentials)) {
       $request->session()->regenerate();
       return redirect()->intended('/dashboard');
