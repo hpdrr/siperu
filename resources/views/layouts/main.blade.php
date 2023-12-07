@@ -19,6 +19,17 @@
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet" />
   <!-- CSS Files -->
   <link id="pagestyle" href="{{ asset('assets/css/material-dashboard.css?v=3.1.0') }}" rel="stylesheet" />
+
+  {{-- Datatables --}}
+  {{-- <link rel="stylesheet" href="{{ asset('assets/DataTables-1.13.8/css/dataTables.bootstrap5.css') }}"> --}}
+  <link rel="stylesheet" href="{{ asset('assets/DataTables-1.13.8/css/dataTables.bootstrap5.min.css') }}">
+  {{-- aman sebelum di bawah ini --}}
+  {{-- <link rel="stylesheet" href="{{ asset('assets/DataTables-1.13.8/css/jquery.dataTables.css') }}"> --}}
+  {{-- <link rel="stylesheet" href="{{ asset('assets/DataTables-1.13.8/css/jquery.dataTables.min.css') }}"> --}}
+  {{-- <link rel="stylesheet" href="{{ asset('assets/DataTables-1.13.8/css/jquery.dataTables_themeroller.css') }}"> --}}
+  {{-- coba pake cdn --}}
+  @yield('ruangan-header')
+
 </head>
 
 <body class="g-sidenav-show  bg-gray-200">
