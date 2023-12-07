@@ -12,7 +12,23 @@
       </div>
 
       <div class="card-body pb-2 pe-2">
-        <button type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop" class="btn btn-dark">Tambah</button>
+        @if (session()->has('successAdd'))
+          <div class="alert alert-success alert-dismissible fade show text-white" role="alert">
+            {{ session('successAdd') }}
+            <button type="button" class="btn-close material-icons" data-bs-dismiss="alert"
+              aria-label="Close">close</button>
+          </div>
+        @endif
+        @if (session()->has('errorAdd'))
+          <div class="alert alert-danger alert-dismissible fade show text-white" role="alert">
+            {{ session('errorAdd') }}
+            <button type="button" class="btn-close material-icons" data-bs-dismiss="alert"
+              aria-label="Close">close</button>
+          </div>
+        @endif
+
+        <button type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop"
+          class="btn btn-dark">Tambah</button>
         <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="1"
           aria-labelledby="staticBackdropLabel" aria-hidden="true">
           <div class="modal-dialog">
@@ -27,19 +43,20 @@
                   <div class="mb-3">
                     <label for="kode_ruangan" class="form-label">Kode Ruangan</label>
                     <input type="number" name="kode_ruangan" class="form-control border p-1" id="kodeRuangan"
-                      aria-describedby="kodeHelp">
+                      aria-describedby="kodeHelp" required>
                   </div>
                   <div class="mb-3">
                     <label for="nama_ruangan" class="form-label">Nama Ruangan</label>
-                    <input type="text" name="nama_ruangan" class="form-control border p-1" id="namaRuangan">
+                    <input type="text" name="nama_ruangan" class="form-control border p-1" id="namaRuangan" required>
                   </div>
                   <div class="mb-3">
                     <label for="kapasitas_ruangan" class="form-label">Kapasitas</label>
-                    <input type="number" name="kapasitas_ruangan" class="form-control border p-1" id="kapasitasRuangan">
+                    <input type="number" name="kapasitas_ruangan" class="form-control border p-1" id="kapasitasRuangan"
+                      required>
                   </div>
                   <div class="mb-3">
                     <label for="lokasi" class="form-label">Lokasi</label>
-                    <input type="text" name="lokasi" class="form-control border p-1" id="lokasiRuangan">
+                    <input type="text" name="lokasi" class="form-control border p-1" id="lokasiRuangan" required>
                   </div>
                   <button type="submit" class="btn btn-primary">Submit</button>
                 </form>

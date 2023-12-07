@@ -32,9 +32,12 @@ class DashboardRuanganController extends Controller
   {
     $room = new Ruangan();
     // mass assignment
+    $kode_ruangan = $request->kode_ruangan;
+    if ($room::where('kode_ruangan', $kode_ruangan)->exists()) {
+      return redirect()->intended('/dashboard/ruangan')->with('errorAdd', 'Gagal menambahkan, Ruangan telah terdaftar!');
+    }
     $room->create($request->all());
-
-    return redirect('/dashboard/ruangan')->with('status', 'Ruangan berhasil ditambahkan!');
+    return redirect('/dashboard/ruangan')->with('successAdd', 'Ruangan berhasil ditambahkan!');
     // assignment
     // $room->nama_ruangan = $request->namaRuangan;
     // $room->kapasitas_ruangan = $request->kapasitasRuangan;
@@ -74,4 +77,13 @@ class DashboardRuanganController extends Controller
   {
     //
   }
+
+  //   public function addValidate(Request $request)
+  //   {
+  //     $exist = Ruangan::where('kode_ruangan', $request->kodeRuangan)->exist();
+  //     if ($exist) {
+  //       return redirect('/dashboard/ruangan')->with('error', 'Kode Ruangan sudah ada!');
+  //     }
+  //     return redirect('/dashboard/ruangan')->with('success', 'Ruangan berhasil ditambahkan!');
+  //   }
 }

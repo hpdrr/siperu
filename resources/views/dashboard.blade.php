@@ -18,7 +18,7 @@
       </div>
       <hr class="dark horizontal my-0" />
       <div class="card-footer p-3">
-        <a href="\ruangan">
+        <a href="/dashboard/ruangan">
           <p class="mb-0">Lihat detail <i class="fa-solid fa-up-right-from-square"></i></p>
         </a>
       </div>
