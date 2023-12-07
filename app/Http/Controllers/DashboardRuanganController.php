@@ -13,7 +13,7 @@ class DashboardRuanganController extends Controller
   public function index()
   {
     return view('ruangan', [
-      'ruangan' => Ruangan::select('nama_ruangan', 'kapasitas_ruangan', 'lokasi')->get()
+      'ruangan' => Ruangan::select('nama_ruangan', 'kapasitas_ruangan', 'lokasi', 'kode_ruangan')->get()
     ]);
   }
 

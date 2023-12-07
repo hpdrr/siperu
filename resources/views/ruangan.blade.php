@@ -105,13 +105,14 @@
                       <!-- Button trigger modal -->
                       <button type="button"
                         class="btn btn-primary btn-sm btn-warning text-white material-icons shadow-none"
-                        data-bs-toggle="modal" data-bs-target="#modalEdit">
+                        data-bs-toggle="modal" data-bs-target="#modalEdit-{{ $ruang->kode_ruangan }}">
                         edit
                       </button>
 
                       <!-- Modal -->
-                      <div class="modal fade" id="modalEdit" data-bs-backdrop="static" data-bs-keyboard="false"
-                        tabindex="-1" aria-labelledby="modalEditLabel" aria-hidden="true">
+                      {{-- tambah foreach nanti disini --}}
+                      <div class="modal fade" id="modalEdit-{{ $ruang->kode_ruangan }}" data-bs-backdrop="static"
+                        data-bs-keyboard="false" tabindex="-1" aria-labelledby="modalEditLabel" aria-hidden="true">
                         <div class="modal-dialog">
                           <div class="modal-content">
                             <div class="modal-header">
@@ -122,11 +123,13 @@
                                 @csrf
                                 <div class="mb-3">
                                   <label for="kode_ruangan" class="form-label">Kode Ruangan</label>
-                                  <input type="number" name="kode_ruangan" class="form-control border p-1"
-                                    id="kodeRuangan" aria-describedby="kodeHelp" required>
+                                  <input type="number" value="{{ $ruang->kode_ruangan }}" name="kode_ruangan"
+                                    class="form-control border p-1" id="kodeRuangan" aria-describedby="kodeHelp"
+                                    required>
                                 </div>
                                 <div class="mb-3">
-                                  <label for="nama_ruangan" class="form-label">{{ $ruang->nama_ruangan }}</label>
+                                  <label for="nama_ruangan" class="form-label">Ruangan</label>
+                                  <input type="hidden" name="id" value="{{ $ruang->id }}">
                                   <input type="text" value="{{ $ruang->nama_ruangan }}" name="nama_ruangan"
                                     class="form-control border p-1" id="namaRuangan" required>
                                 </div>
