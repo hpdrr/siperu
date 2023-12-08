@@ -13,7 +13,7 @@ class DashboardRuanganController extends Controller
   public function index()
   {
     return view('ruangan', [
-      'ruangan' => Ruangan::select('nama_ruangan', 'kapasitas_ruangan', 'lokasi', 'kode_ruangan')->get()
+      'ruangan' => Ruangan::select('image', 'nama_ruangan', 'kapasitas_ruangan', 'lokasi', 'kode_ruangan')->get()
     ]);
   }
 
@@ -31,12 +31,32 @@ class DashboardRuanganController extends Controller
   public function store(Request $request)
   {
     $room = new Ruangan();
+
     // mass assignment
+    /**
+     * pengecekan kode ruangan yang telah tersedia
+     */
     $kode_ruangan = $request->kode_ruangan;
     if ($room::where('kode_ruangan', $kode_ruangan)->exists()) {
       return redirect()->intended('/dashboard/ruangan')->with('errorAdd', 'Gagal menambahkan, Ruangan telah terdaftar!');
     }
-    $room->create($request->all());
+    /**
+     * validasi tipe file
+     */
+    // $request->validate([
+    //   'image' => 'required|image|file|max:2048',
+    // ]);
+
+    $validated = $request->validate([
+      'image' => 'required|image|file|max:2048',
+      'nama_ruangan' => 'required',
+      'kapasitas_ruangan' => 'required',
+      'lokasi' => 'required',
+      'kode_ruangan' => 'required',
+    ]);
+
+    $validated['image'] = $request->file('image')->store('images');
+    $room::create($validated);
     return redirect('/dashboard/ruangan')->with('successAdd', 'Ruangan berhasil ditambahkan!');
   }
 
@@ -62,6 +82,14 @@ class DashboardRuanganController extends Controller
   public function update(Request $request, Ruangan $ruangan)
   {
     // dd($request->all());
+    if ($request->kode_ruangan != $ruangan->kode_ruangan) {
+      $exist = Ruangan::where('kode_ruangan', $request->kode_ruangan)->exists();
+      if ($exist) {
+        return redirect('/dashboard/ruangan')->with('errorEdit', 'Gagal mengubah, Kode Ruangan telah terdaftar!');
+      }
+    }
+    $ruangan->update($request->all());
+    return redirect('/dashboard/ruangan')->with('successEdit', 'Ruangan berhasil diubah!');
   }
 
   /**

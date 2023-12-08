@@ -7,3 +7,12 @@
     background-color: #34495e;
     border-color: #34495e;
 }
+.btn-edit {
+    background-color: #f1c40f;
+    border-color: #f1c40f;
+}
+
+.btn-edit:hover {
+    background-color: #d4ac0d;
+    border-color: #d4ac0d;
+}
