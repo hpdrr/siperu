@@ -120,6 +120,7 @@
                             </div>
                             <div class="modal-body">
                               <form method="POST" action="/dashboard/ruangan">
+                                @method('PUT')
                                 @csrf
                                 <div class="mb-3">
                                   <label for="kode_ruangan" class="form-label">Kode Ruangan</label>
@@ -141,8 +142,8 @@
                                 </div>
                                 <div class="mb-3">
                                   <label for="lokasi" class="form-label">Lokasi</label>
-                                  <input type="text" name="lokasi" class="form-control border p-1"
-                                    id="lokasiRuangan" required>
+                                  <input type="text" value="{{ $ruang->lokasi }}" name="lokasi"
+                                    class="form-control border p-1" id="lokasiRuangan" required>
                                 </div>
                                 <button type="submit" class="btn btn-success">Simpan</button>
                               </form>
@@ -154,8 +155,16 @@
                         </div>
                       </div>
                       {{-- edit modal --}}
-                      <button
-                        class="btn btn-primary btn-sm btn-warning text-white material-icons shadow-none">delete</button>
+                      {{-- delete modal --}}
+                      <form action="/dashboard/ruangan/{{ $ruang->kode_ruangan }}" method="POST"
+                        id="delete-form-{{ $ruang->kode_ruangan }}" style="display: none;">
+                        @csrf
+                        @method('delete')
+                      </form>
+                      <button class="btn btn-primary btn-sm btn-warning text-white material-icons shadow-none"
+                        onclick="document.getElementById('delete-form-{{ $ruang->kode_ruangan }}').submit();">delete</button>
+                      {{-- delete modal --}}
+
                     </div>
                   </td>
                 </tr>

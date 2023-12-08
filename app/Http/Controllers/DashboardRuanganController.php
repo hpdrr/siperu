@@ -38,12 +38,6 @@ class DashboardRuanganController extends Controller
     }
     $room->create($request->all());
     return redirect('/dashboard/ruangan')->with('successAdd', 'Ruangan berhasil ditambahkan!');
-    // assignment
-    // $room->nama_ruangan = $request->namaRuangan;
-    // $room->kapasitas_ruangan = $request->kapasitasRuangan;
-    // $room->lokasi = $request->lokasiRuangan;
-    // $room->kode_ruangan = $request->kodeRuangan;
-    // $room->save();
   }
 
   /**
@@ -59,7 +53,7 @@ class DashboardRuanganController extends Controller
    */
   public function edit(Ruangan $ruangan)
   {
-    dd("test");
+    //
   }
 
   /**
@@ -67,15 +61,17 @@ class DashboardRuanganController extends Controller
    */
   public function update(Request $request, Ruangan $ruangan)
   {
-    //
+    // dd($request->all());
   }
 
   /**
    * Remove the specified resource from storage.
    */
-  public function destroy(Ruangan $ruangan)
+  public function destroy(Request $request, Ruangan $ruangan)
   {
-    //
+    $ruangan::destroy($request->kode_ruangan);
+    return redirect('/dashboard/ruangan')->with('successDelete', 'Ruangan berhasil dihapus!');
+    // dd($ruangan->kode_ruangan);
   }
 
   //   public function addValidate(Request $request)
