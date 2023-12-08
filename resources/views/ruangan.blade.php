@@ -157,12 +157,12 @@
                       {{-- edit modal --}}
                       {{-- delete modal --}}
                       <form action="/dashboard/ruangan/{{ $ruang->kode_ruangan }}" method="POST"
-                        id="delete-form-{{ $ruang->kode_ruangan }}" style="display: none;">
+                        id="delete-form-{{ $ruang->kode_ruangan }}" style="display: inline;">
                         @csrf
                         @method('delete')
+                        <button class="btn btn-primary btn-sm btn-warning text-white material-icons shadow-none"
+                          type="submit">delete</button>
                       </form>
-                      <button class="btn btn-primary btn-sm btn-warning text-white material-icons shadow-none"
-                        onclick="document.getElementById('delete-form-{{ $ruang->kode_ruangan }}').submit();">delete</button>
                       {{-- delete modal --}}
 
                     </div>
@@ -176,6 +176,19 @@
 
       </div>
     </div>
+  @endsection
+  @section('scripts')
+    <script>
+      // document.getElementById('delete-form-{{ $ruang->kode_ruangan }}').submit();
+      const hapus = document.getElementById('delete-form-{{ $ruang->kode_ruangan }}');
+      hapus.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const konfirmasi = confirm('Apakah anda yakin ingin menghapus data ini?');
+        if (konfirmasi === true) {
+          this.submit();
+        }
+      });
+    </script>
   @endsection
   {{-- @section('script')
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"

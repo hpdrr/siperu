@@ -67,9 +67,9 @@ class DashboardRuanganController extends Controller
   /**
    * Remove the specified resource from storage.
    */
-  public function destroy(Request $request, Ruangan $ruangan)
+  public function destroy(Ruangan $ruangan)
   {
-    $ruangan::destroy($request->kode_ruangan);
+    Ruangan::destroy($ruangan->kode_ruangan);
     return redirect('/dashboard/ruangan')->with('successDelete', 'Ruangan berhasil dihapus!');
     // dd($ruangan->kode_ruangan);
   }
