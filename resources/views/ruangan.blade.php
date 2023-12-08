@@ -121,6 +121,9 @@
             <thead>
               <th scope="col" class="text-uppercase text-secondary text-l font-weight-bolder opacity-7">No
               </th>
+              <th scope="col" class="text-center text-uppercase text-secondary text-l font-weight-bolder opacity-7">
+                Foto
+              </th>
               <th scope="col" class=" text-uppercase text-secondary text-l font-weight-bolder opacity-7 ps-2">
                 Ruangan
               </th>
@@ -134,19 +137,20 @@
             <tbody>
               @foreach ($ruangan as $ruang)
                 <tr>
-                  <td class="text-center text-secondary text-s font-weight-bold">
+                  <td class="text-center text-secondary text-sm font-weight-bold">
                     {{ $loop->iteration }}
                   </td>
                   <td class="text-secondary text-m font-weight-bold">
-                    <img src="{{ asset('storage/' . $ruang->image) }}" alt="{{ $ruang->image }}">
+                    <img src="{{ asset('storage/' . $ruang->image) }}" alt="{{ $ruang->image }}"
+                      class="border-radius-lg" style="max-width: 150px; overflow:hidden;">
                   </td>
                   <td class="text-secondary text-m font-weight-bold">
                     {{ $ruang->nama_ruangan }}
                   </td>
-                  <td class="align-middle text-center text-secondary text-m font-weight-bold">
+                  <td class="align-middle text-center text-secondary text-sm font-weight-bold">
                     {{ $ruang->kapasitas_ruangan }}
                   </td>
-                  <td class="align-middle text-secondary text-m font-weight-bold">
+                  <td class="align-middle text-secondary text-m ">
                     {{ $ruang->lokasi }}
                   </td>
                   <td>
@@ -186,6 +190,16 @@
                                     name="nama_ruangan" class="form-control border p-1" required>
                                 </div>
                                 <div class="mb-3">
+                                  <label for="image" class="form-label">Tambahkan gambar</label>
+                                  <input class="form-control border p-1 @error('image') is-invalid @enderror"
+                                    name="image" type="file" id="image">
+                                </div>
+                                @error('image')
+                                  <div class="invalid-feedback">
+                                    {{ $message }}
+                                  </div>
+                                @enderror
+                                <div class="mb-3">
                                   <label for="kapasitas_ruangan" class="form-label">Kapasitas</label>
                                   <input type="number"
                                     value="{{ old('kapasitas_ruangan', $ruang->kapasitas_ruangan) }}"
@@ -212,7 +226,7 @@
                         id="delete-form-{{ $ruang->kode_ruangan }}" style="display: inline;">
                         @csrf
                         @method('delete')
-                        <button class="btn btn-danger btn-sm btn-warning text-white material-icons shadow-none"
+                        <button class="btn btn-danger btn-sm btn-warning pd-0 text-white material-icons shadow-none"
                           onclick="return confirm('are you sure?')">delete</button>
                       </form>
                       {{-- delete modal --}}
