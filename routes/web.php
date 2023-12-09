@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DashboardRuanganController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
@@ -29,12 +30,13 @@ Route::post('/logout', [LoginController::class, 'logout']);
 Route::get('/register', [RegisterController::class, 'index'])->middleware('guest');
 Route::post('/register', [RegisterController::class, 'store']);
 
-Route::get('/dashboard', function () {
-  return view('dashboard', [
-    'jumlah_ruangan' => Ruangan::count(),
-  ]);
-})->middleware('auth');
+// Route::get('/dashboard', function () {
+//   return view('dashboard', [
+//     'jumlah_ruangan' => Ruangan::count(),
+//   ]);
+// })->middleware('auth');
 
+Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('auth');
 
 Route::resource('/dashboard/ruangan', DashboardRuanganController::class)->middleware('auth');
 

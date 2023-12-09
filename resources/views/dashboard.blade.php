@@ -69,8 +69,8 @@
     <div class="col-lg-12 col-md-6 mt-4 mb-4">
       <div class="card z-index-2">
         <div class="card-body">
-          <h1 class="mb-0">Selamat Pagi, {{ ucfirst(auth()->user()->nama) }}</h1>
-          <p class="text-sm">Last Campaign Performance</p>
+          <h1 class="mb-0">Selamat {{ $time }}, {{ ucfirst(auth()->user()->nama) }}</h1>
+          <p class="text-m">Disini harusnya tertera hari, tanggal bulan tahun</p>
           <hr class="dark horizontal" />
           <div class="d-flex">
             <i class="material-icons text-sm my-auto me-1">schedule</i>

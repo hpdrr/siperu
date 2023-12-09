@@ -24,7 +24,7 @@ class DashboardRuanganController extends Controller
     }
     // dd(request('search'));
     return view('ruangan', [
-      'ruangan' => Ruangan::select('image', 'nama_ruangan', 'kapasitas_ruangan', 'lokasi', 'kode_ruangan')->pagination(5)->get()
+      'ruangan' => Ruangan::select('image', 'nama_ruangan', 'kapasitas_ruangan', 'lokasi', 'kode_ruangan')->get()
     ]);
   }
 
