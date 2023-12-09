@@ -10,8 +10,23 @@
           <h6 class="text-white text-capitalize ps-3">Daftar Ruangan</h6>
         </div>
       </div>
-
       <div class="card-body pb-2 pe-2">
+
+        {{-- START Search --}}
+        <div class="row justify-content-end">
+          <div class="col-md-4">
+            <form action="" method="GET">
+              <div class="input-group mb-3">
+                <input type="text" class="form-control ps-2 border rounded-end-0" placeholder="Cari" name="search">
+                <button class="btn btn-primary shadow-none border mb-0 material-icons" type="submit"
+                  id="button-addon2">search</button>
+              </div>
+            </form>
+          </div>
+        </div>
+        {{-- END Search --}}
+
+        {{-- START flashin --}}
         @if (session()->has('successAdd'))
           <div class="d-flex justify-content-end">
             <div class="alert alert-success alert-dismissible fade show text-white col-4 d-flex flex-row" role="alert">
@@ -63,7 +78,10 @@
             </div>
           </div>
         @endif
+        {{-- END flashin --}}
 
+
+        {{-- START Add data --}}
         <button type="button" data-bs-toggle="modal" data-bs-target="#modal_add"
           class="btn btn-dark material-icons">add_location_alt</button>
         <div class="modal fade" id="modal_add" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="1"
@@ -97,8 +115,8 @@
                   @enderror
                   <div class="mb-3">
                     <label for="kapasitas_ruangan" class="form-label">Kapasitas</label>
-                    <input type="number" name="kapasitas_ruangan" class="form-control border p-1" id="kapasitasRuangan"
-                      required>
+                    <input type="number" name="kapasitas_ruangan" class="form-control border p-1"
+                      id="kapasitasRuangan" required>
                   </div>
                   <div class="mb-3">
                     <label for="lokasi" class="form-label">Lokasi</label>
@@ -114,8 +132,10 @@
             </div>
           </div>
         </div>
-        <div class="table-responsive p-3">
+        {{-- END Add data --}}
 
+        {{-- START Showing datas --}}
+        <div class="table-responsive p-3">
           {{-- Table --}}
           <table id="myTable" class="display table table-sm table-hover align-items-center mb-0">
             <thead>
@@ -155,7 +175,6 @@
                   </td>
                   <td>
                     <div class="d-flex justify-content-evenly">
-                      {{-- <button class="btn btn-primary btn-sm btn-warning text-white material-icons shadow-none">edit</button> --}}
                       {{-- edit modal --}}
                       <!-- Button trigger modal -->
                       <button type="button"
@@ -163,9 +182,7 @@
                         data-bs-toggle="modal" data-bs-target="#modalEdit-{{ $ruang->kode_ruangan }}">
                         edit
                       </button>
-
-                      <!-- Modal -->
-                      {{-- tambah foreach nanti disini --}}
+                      <!-- START Edit Modal -->
                       <div class="modal fade" id="modalEdit-{{ $ruang->kode_ruangan }}" data-bs-backdrop="static"
                         data-bs-keyboard="false" tabindex="-1" aria-labelledby="modalEditLabel" aria-hidden="true">
                         <div class="modal-dialog">
@@ -222,7 +239,8 @@
                           </div>
                         </div>
                       </div>
-                      {{-- edit modal --}}
+                      {{-- END edit modal --}}
+
                       {{-- delete modal --}}
                       <form action="/dashboard/ruangan/{{ $ruang->kode_ruangan }}" method="POST"
                         id="delete-form-{{ $ruang->kode_ruangan }}" style="display: inline;">

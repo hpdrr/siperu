@@ -13,6 +13,16 @@ class DashboardRuanganController extends Controller
    */
   public function index()
   {
+    if (request('search')) {
+      return view('ruangan', [
+        'ruangan' => Ruangan::where('nama_ruangan', 'like', '%' . request('search') . '%')
+          ->orWhere('kapasitas_ruangan', 'like', '%' . request('search') . '%')
+          ->orWhere('lokasi', 'like', '%' . request('search') . '%')
+          ->orWhere('kode_ruangan', 'like', '%' . request('search') . '%')
+          ->get()
+      ]);
+    }
+    // dd(request('search'));
     return view('ruangan', [
       'ruangan' => Ruangan::select('image', 'nama_ruangan', 'kapasitas_ruangan', 'lokasi', 'kode_ruangan')->get()
     ]);

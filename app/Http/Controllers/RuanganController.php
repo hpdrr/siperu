@@ -6,5 +6,8 @@ use Illuminate\Http\Request;
 
 class RuanganController extends Controller
 {
-    //
+  // public function index()
+  // {
+  //   dd(request('search'));
+  // }
 }
