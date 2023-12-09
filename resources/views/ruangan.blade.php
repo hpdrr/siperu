@@ -117,7 +117,7 @@
         <div class="table-responsive p-3">
 
           {{-- Table --}}
-          <table id="myTable" class="display table table-hover align-items-center mb-0">
+          <table id="myTable" class="display table table-sm table-hover align-items-center mb-0">
             <thead>
               <th scope="col" class="text-uppercase text-secondary text-l font-weight-bolder opacity-7">No
               </th>
@@ -144,7 +144,7 @@
                     <img src="{{ asset('storage/' . $ruang->image) }}" alt="{{ $ruang->image }}"
                       class="border-radius-lg" style="max-width: 150px; overflow:hidden;">
                   </td>
-                  <td class="text-secondary text-m font-weight-bold">
+                  <td class="text-secondary text-m font-weight-bold ps-3">
                     {{ $ruang->nama_ruangan }}
                   </td>
                   <td class="align-middle text-center text-secondary text-sm font-weight-bold">
@@ -159,7 +159,7 @@
                       {{-- edit modal --}}
                       <!-- Button trigger modal -->
                       <button type="button"
-                        class="btn btn-warning btn-sm btn-edit text-white material-icons shadow-none"
+                        class="btn btn-warning btn-sm btn-edit text-white material-icons shadow-none me-1"
                         data-bs-toggle="modal" data-bs-target="#modalEdit-{{ $ruang->kode_ruangan }}">
                         edit
                       </button>
@@ -174,7 +174,8 @@
                               <h1 class="modal-title fs-5" id="modalEditLabel">Ubah Ruangan</h1>
                             </div>
                             <div class="modal-body">
-                              <form method="POST" action="/dashboard/ruangan/{{ $ruang->kode_ruangan }}">
+                              <form method="POST" action="/dashboard/ruangan/{{ $ruang->kode_ruangan }}"
+                                enctype="multipart/form-data">
                                 @method('PUT')
                                 @csrf
                                 <div class="mb-3">
@@ -191,6 +192,7 @@
                                 </div>
                                 <div class="mb-3">
                                   <label for="image" class="form-label">Tambahkan gambar</label>
+                                  <input type="hidden" name="oldImage" value="{{ $ruang->image }}">
                                   <input class="form-control border p-1 @error('image') is-invalid @enderror"
                                     name="image" type="file" id="image">
                                 </div>

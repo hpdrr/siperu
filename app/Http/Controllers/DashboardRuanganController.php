@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Ruangan;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class DashboardRuanganController extends Controller
 {
@@ -88,8 +89,22 @@ class DashboardRuanganController extends Controller
         return redirect('/dashboard/ruangan')->with('errorEdit', 'Gagal mengubah, Kode Ruangan telah terdaftar!');
       }
     }
-    $ruangan->update($request->all());
-    return redirect('/dashboard/ruangan')->with('successEdit', 'Ruangan berhasil diubah!');
+
+    $validated = $request->validate([
+      'image' => 'required|image|file|max:2048',
+      'nama_ruangan' => 'required',
+      'kapasitas_ruangan' => 'required',
+      'lokasi' => 'required',
+      'kode_ruangan' => 'required',
+    ]);
+
+    /**
+     * menyimpan file image ke dalam folder public/images
+     */
+    Storage::delete($request->oldImage);
+    $validated['image'] = $request->file('image')->store('images');
+    $ruangan->update($validated);
+    return redirect('/dashboard/ruangan')->with('successEdit', 'Ruangan berhasil diperbarui!');
   }
 
   /**
