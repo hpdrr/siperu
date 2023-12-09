@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DashboardRuanganController;
+use App\Http\Controllers\LandingController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
 use App\Models\Ruangan;
@@ -19,9 +20,13 @@ use Illuminate\Support\ViewErrorBag;
 |
 */
 
-Route::get('/', function () {
-  return view('welcome');
-});
+/**
+ * Route::get('/', function () {
+ *   return view('welcome');
+ * });
+ */
+
+Route::get('/', [LandingController::class, 'index']);
 
 Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');
 Route::post('/login', [LoginController::class, 'authenticate']);
