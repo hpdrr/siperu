@@ -139,20 +139,26 @@
           {{-- Table --}}
           <table id="myTable" class="display table table-sm table-hover align-items-center mb-0">
             <thead>
-              <th scope="col" class="text-uppercase text-secondary text-l font-weight-bolder opacity-7">No
-              </th>
-              <th scope="col" class="text-center text-uppercase text-secondary text-l font-weight-bolder opacity-7">
-                Foto
-              </th>
-              <th scope="col" class=" text-uppercase text-secondary text-l font-weight-bolder opacity-7 ps-2">
-                Ruangan
-              </th>
-              <th scope="col" class="text-center text-uppercase text-secondary text-l font-weight-bolder opacity-7">
-                Kapasitas</th>
-              <th scope="col" class="text-center text-uppercase text-secondary text-l font-weight-bolder opacity-7">
-                Lokasi</th>
-              <th scope="col" class="text-center text-uppercase text-secondary text-l font-weight-bolder opacity-7">
-              </th>
+              <tr>
+                <th scope="col" class="text-uppercase text-secondary text-l font-weight-bolder opacity-7">No
+                </th>
+                <th scope="col"
+                  class="text-center text-uppercase text-secondary text-l font-weight-bolder opacity-7">
+                  Foto
+                </th>
+                <th scope="col" class=" text-uppercase text-secondary text-l font-weight-bolder opacity-7 ps-2">
+                  Ruangan
+                </th>
+                <th scope="col"
+                  class="text-center text-uppercase text-secondary text-l font-weight-bolder opacity-7">
+                  Kapasitas</th>
+                <th scope="col"
+                  class="text-center text-uppercase text-secondary text-l font-weight-bolder opacity-7 mw-50">
+                  Lokasi</th>
+                <th scope="col"
+                  class="text-center text-uppercase text-secondary text-l font-weight-bolder opacity-7">
+                </th>
+              </tr>
             </thead>
             <tbody>
               @foreach ($ruangan as $ruang)
