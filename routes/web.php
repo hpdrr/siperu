@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DashboardRuanganController;
+use App\Http\Controllers\FileController;
 use App\Http\Controllers\LandingController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PeminjamanController;
@@ -44,6 +45,7 @@ Route::resource('/', PeminjamanController::class);
 
 Route::resource('/dashboard/pinjaman', PinjamanController::class)->middleware('auth');
 
+Route::get('/dashboard/pinjaman/download/rundowns/{pdf}', [FileController::class, 'downloadFile'])->middleware('auth');
 
 // buatan sendiri
 // Route::get('/dashboard/pinjaman', function () {

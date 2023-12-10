@@ -54,7 +54,7 @@
                     {{ $pinjam->mulai_pinjam }}
                   </td>
                   <td class="align-middle text-secondary text-m">
-                    <a href="{{ asset('storage/rundowns' . $pinjam->rundown) }}">unduh</a>
+                    <a href="{{ url('/dashboard/pinjaman/download/' . $pinjam->rundown) }}">unduh</a>
                   </td>
                   <td class="align-middle">
                     <button class="btn btn-danger">
