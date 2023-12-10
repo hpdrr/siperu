@@ -66,9 +66,20 @@ class PinjamanController extends Controller
   /**
    * Update the specified resource in storage.
    */
-  public function update(Request $request, string $id)
+  public function update(Request $request, Peminjaman $table_peminjaman)
   {
-    //
+    $validated = $request->validate([
+      'status' => 'required',
+      'kode_peminjaman' => 'required',
+    ]);
+    // dd($validated['status']);
+    // $table_peminjaman->update([
+    //   'status' => $validated['status'],
+    // ]);
+    $table_peminjaman->where('kode_peminjaman', $validated['kode_peminjaman'])->update([
+      'status' => $validated['status'],
+    ]);
+    return redirect('/dashboard/pinjaman');
   }
 
   /**

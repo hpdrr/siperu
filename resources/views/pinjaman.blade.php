@@ -30,7 +30,7 @@
                   Berkas</th>
                 <th class="text-center text-uppercase text-secondary text-l font-weight-bolder opacity-7">
                   Status</th>
-                <th class="text-secondary opacity-7"></th>
+                <th class="text-secondary opacity-7">AKSI</th>
               </tr>
             </thead>
 
@@ -61,26 +61,38 @@
                   </td>
                   <td
                     class="mt-3 text-center text-white text-m badge
-                    @if ($pinjam->status == 'Diterima') bg-gradient-success
-                    @elseif($pinjam->status == 'Ditolak') bg-gradient-danger
+                    @if ($pinjam->status == 'diterima') bg-gradient-success
+                    @elseif($pinjam->status == 'ditolak') bg-gradient-danger
                     @else bg-gradient-warning @endif">
                     {{ $pinjam->status }}
                   </td>
-                  <td class="align-middle text-center">
-                    <button class="btn btn-danger">
-                      <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip"
-                        data-original-title="Edit user">
-                        <i class="material-icons outline text-white">close</i>
-                      </a>
-                    </button>
-                    <button class="btn btn-success">
-                      <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip"
-                        data-original-title="Edit user">
-                        <i class="material-icons outline text-white">done</i>
-                      </a>
-                    </button>
-                  </td>
+                  <td class="align-baseline ">
+                    <div class="d-flex justify-content-between">
+                      @if ($pinjam->status == 'menunggu')
+                        <form action="/dashboard/pinjaman/{{ $pinjam->kode_peminjaman }}" method="POST">
+                          @method('PUT')
+                          @csrf
+                          {{-- rejected --}}
+                          <label for="status"></label>
+                          <input type="text" name="status" value="ditolak" hidden>
+                          <input type="text" name="kode_peminjaman" value="{{ $pinjam->kode_peminjaman }}" hidden>
+                          <button class="btn btn-danger p-2" type="submit">
+                            <i class="material-icons">cancel</i>
+                          </button>
+                        </form>
+                        <form action="/dashboard/pinjaman/{{ $pinjam->kode_peminjaman }}" method="POST">
+                          @method('PUT')
+                          @csrf
+                          <input type="text" name="status" value="diterima" hidden>
+                          <input type="text" name="kode_peminjaman" value="{{ $pinjam->kode_peminjaman }}" hidden>
+                          <button class="btn btn-success p-2" type="submit">
+                            <i class="material-icons outline text-white">done</i>
+                          </button>
+                        </form>
+                      @endif
 
+                    </div>
+                  </td>
                 </tr>
               @endforeach
             </tbody>
