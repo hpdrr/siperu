@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Ruangan;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 class DashboardRuanganController extends Controller
@@ -13,19 +14,22 @@ class DashboardRuanganController extends Controller
    */
   public function index()
   {
-    if (request('search')) {
+    if (Auth::user()->role_id === 1) {
+      if (request('search')) {
+        return view('ruangan', [
+          'ruangan' => Ruangan::where('nama_ruangan', 'like', '%' . request('search') . '%')
+            ->orWhere('kapasitas_ruangan', 'like', '%' . request('search') . '%')
+            ->orWhere('lokasi', 'like', '%' . request('search') . '%')
+            ->orWhere('kode_ruangan', 'like', '%' . request('search') . '%')
+            ->get()
+        ]);
+      }
+      // dd(request('search'));
       return view('ruangan', [
-        'ruangan' => Ruangan::where('nama_ruangan', 'like', '%' . request('search') . '%')
-          ->orWhere('kapasitas_ruangan', 'like', '%' . request('search') . '%')
-          ->orWhere('lokasi', 'like', '%' . request('search') . '%')
-          ->orWhere('kode_ruangan', 'like', '%' . request('search') . '%')
-          ->get()
+        'ruangan' => Ruangan::select('image', 'nama_ruangan', 'kapasitas_ruangan', 'lokasi', 'kode_ruangan')->get()
       ]);
     }
-    // dd(request('search'));
-    return view('ruangan', [
-      'ruangan' => Ruangan::select('image', 'nama_ruangan', 'kapasitas_ruangan', 'lokasi', 'kode_ruangan')->get()
-    ]);
+    return back();
   }
 
   /**

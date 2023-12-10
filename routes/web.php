@@ -8,7 +8,6 @@ use App\Http\Controllers\PeminjamanController;
 use App\Http\Controllers\RegisterController;
 use App\Models\Ruangan;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\ViewErrorBag;
 
 /*
 |--------------------------------------------------------------------------
@@ -46,7 +45,7 @@ Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('aut
 
 Route::resource('/dashboard/ruangan', DashboardRuanganController::class)->middleware('auth');
 
-Route::resource('/', PeminjamanController::class)->middleware('auth');
+Route::resource('/', PeminjamanController::class);
 
 
 // buatan sendiri

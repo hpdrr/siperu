@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Ruangan;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class DashboardController extends Controller
 {
@@ -21,10 +22,21 @@ class DashboardController extends Controller
     } else {
       $now = 'Malam';
     }
-    return view('dashboard', [
-      'title' => 'Dashboard',
-      'jumlah_ruangan' => Ruangan::count(),
-      'time' => $now
-    ]);
+    // if (Auth::user() === 1) {
+    //   return view('dashboard', [
+    //     'title' => 'Dashboard',
+    //     'jumlah_ruangan' => Ruangan::count(),
+    //     'time' => $now
+    //   ]);
+    // }
+    // return back();
+    if (Auth::user()->role_id === 1) {
+      return view('dashboard', [
+        'title' => 'Dashboard',
+        'jumlah_ruangan' => Ruangan::count(),
+        'time' => $now
+      ]);
+    }
+    return back();
   }
 }

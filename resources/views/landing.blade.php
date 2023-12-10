@@ -35,16 +35,18 @@
           <li class="nav-item"><a class="nav-link" href="#fitur">fitur</a></li>
           <li class="nav-item"><a class="nav-link" href="#ruangan">Ruangan</a></li>
           {{-- <li class="nav-item"><a class="nav-link" href="/logout"><i class="fas fa-right-from-bracket"></i></a></li> --}}
-          <li class="nav-item">
-            <form action="/logout" method="POST">
-              @csrf
-              <button class="btn nav-link text-white">
-                <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                  <i class="fas fa-right-from-bracket"></i>
-                </div>
-              </button>
-            </form>
-          </li>
+          @auth
+            <li class="nav-item">
+              <form action="/logout" method="POST">
+                @csrf
+                <button class="btn nav-link text-white">
+                  <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                    <i class="fas fa-right-from-bracket"></i>
+                  </div>
+                </button>
+              </form>
+            </li>
+          @endauth
         </ul>
       </div>
     </div>
@@ -62,7 +64,7 @@
         <a class="btn btn-primary btn-xl text-uppercase" href="/login">Login</a>
       @endguest
       @auth
-        @if ($user === 1)
+        @if ($user->role_id === 1)
           <a class="btn btn-primary btn-xl text-uppercase" href="/dashboard">admin</a>
         @else
           <a class="btn btn-primary btn-xl text-uppercase" href="#ruangan">Ajukan Peminjaman</a>
@@ -178,10 +180,13 @@
                       <li>Lokasi: <strong>{{ $ruang->lokasi }}</strong></li>
                     </ul>
                   </div>
-                  <button type="button" class="btn btn-warning btn-sm btn-edit text-white shadow p-2 mb-3"
-                    data-bs-toggle="modal" data-bs-target="#modalPinjam-{{ $ruang->kode_ruangan }}">
-                    Pinjam
-                  </button>
+                  @auth
+
+                    <button type="button" class="btn btn-warning btn-sm btn-edit text-white shadow p-2 mb-3"
+                      data-bs-toggle="modal" data-bs-target="#modalPinjam-{{ $ruang->kode_ruangan }}">
+                      Pinjam
+                    </button>
+                  @endauth
                 </div>
               </div>
             </div>
@@ -207,8 +212,8 @@
               </div>
               <div class="mb-3">
                 <label for="user_id" class="form-label" hidden>NIM Peminjam</label>
-                <input type="text" name="user_id" class="form-control border p-1" value="{{ $user->nim }}"
-                  id="userIdPeminjam" hidden>
+                <input type="text" name="user_id" class="form-control border p-1"
+                  value="@auth{{ $user->nim }} @endauth" id="userIdPeminjam" hidden>
               </div>
               <div class="mb-3">
                 <label for="tanggalPinjam" class="form-label">Masukkan tanggal</label>

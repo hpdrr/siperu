@@ -77,6 +77,8 @@
                       <a href="/register" class="text-primary text-gradient font-weight-bold">Daftar</a>
                     </p>
                   </form>
+                  <a href="/"><i class="fas fa-arrow-left"></i><span
+                      class="text-primary text-gradient">Kembali</span></a>
                 </div>
               </div>
             </div>
