@@ -16,6 +16,17 @@ class PinjamanController extends Controller
   public function index()
   {
     if (Auth::user()->role_id === 1) {
+      if (request('search')) {
+        return view('pinjaman', [
+          'pinjaman' => Peminjaman::where('kode_peminjaman', 'like', '%' . request('search') . '%')
+            ->orWhere('kode_ruangan', 'like', '%' . request('search') . '%')
+            ->orWhere('user_id', 'like', '%' . request('search') . '%')
+            ->orWhere('keperluan', 'like', '%' . request('search') . '%')
+            ->orWhere('mulai_pinjam', 'like', '%' . request('search') . '%')
+            ->orWhere('status', 'like', '%' . request('search') . '%')
+            ->get()
+        ]);
+      }
       return view('pinjaman', [
         'pinjaman' => Peminjaman::select(
           'kode_peminjaman',

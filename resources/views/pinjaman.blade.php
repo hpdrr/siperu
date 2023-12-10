@@ -11,7 +11,18 @@
           <h6 class="text-white text-capitalize ps-3">Daftar Peminjam Ruangan</h6>
         </div>
       </div>
-      <div class="card-body px-0 pb-2">
+      <div class="card-body px-0 pb-2 me-3">
+        <div class="row justify-content-end">
+          <div class="col-md-4">
+            <form action="" method="GET">
+              <div class="input-group mb-3">
+                <input type="text" class="form-control ps-2 border rounded-end-0" placeholder="Cari" name="search">
+                <button class="btn btn-primary shadow-none border mb-0 material-icons" type="submit"
+                  id="button-addon2">search</button>
+              </div>
+            </form>
+          </div>
+        </div>
         <div class="table-responsive p-0">
           <table class="table align-items-center mb-0">
             <thead>
