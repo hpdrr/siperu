@@ -181,11 +181,12 @@
                     </ul>
                   </div>
                   @auth
-
-                    <button type="button" class="btn btn-warning btn-sm btn-edit text-white shadow p-2 mb-3"
-                      data-bs-toggle="modal" data-bs-target="#modalPinjam-{{ $ruang->kode_ruangan }}">
-                      Pinjam
-                    </button>
+                    @if (!($user->role_id === 1))
+                      <button type="button" class="btn btn-warning btn-sm btn-edit text-white shadow p-2 mb-3"
+                        data-bs-toggle="modal" data-bs-target="#modalPinjam-{{ $ruang->kode_ruangan }}">
+                        Pinjam
+                      </button>
+                    @endif
                   @endauth
                 </div>
               </div>

@@ -23,7 +23,8 @@ class PinjamanController extends Controller
           'user_id',
           'keperluan',
           'mulai_pinjam',
-          'rundown'
+          'rundown',
+          'status'
         )->get(),
       ]);
     }

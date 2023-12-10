@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Peminjaman;
 use App\Models\Ruangan;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -34,7 +35,8 @@ class DashboardController extends Controller
       return view('dashboard', [
         'title' => 'Dashboard',
         'jumlah_ruangan' => Ruangan::count(),
-        'time' => $now
+        'time' => $now,
+        'jumlah_peminjaman' => Peminjaman::count(),
       ]);
     }
     return back();

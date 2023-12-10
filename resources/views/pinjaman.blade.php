@@ -17,17 +17,19 @@
             <thead>
               <tr>
                 <th class="text-uppercase text-secondary text-l font-weight-bolder opacity-7">No</th>
-                <th class="text-uppercase text-secondary text-l font-weight-bolder opacity-7">Kode Peminjaman</th>
+                <th class="text-uppercase text-secondary text-l font-weight-bolder opacity-7">Kode</th>
                 <th class="text-uppercase text-secondary text-l font-weight-bolder opacity-7 ps-2">Ruangan
                 </th>
                 <th class="text-center text-uppercase text-secondary text-l font-weight-bolder opacity-7">
                   Peminjam</th>
                 <th class="text-center text-uppercase text-secondary text-l font-weight-bolder opacity-7">
-                  Keperluan</th>
+                  Agenda</th>
                 <th class="text-center text-uppercase text-secondary text-l font-weight-bolder opacity-7">
                   Tanggal</th>
                 <th class="text-center text-uppercase text-secondary text-l font-weight-bolder opacity-7">
                   Berkas</th>
+                <th class="text-center text-uppercase text-secondary text-l font-weight-bolder opacity-7">
+                  Status</th>
                 <th class="text-secondary opacity-7"></th>
               </tr>
             </thead>
@@ -47,16 +49,24 @@
                   <td class="align-middle text-secondary text-m">
                     {{ $pinjam->user_id }}
                   </td>
-                  <td class="align-middle text-secondary text-m">
+                  <td class="align-middle text-center text-secondary text-m">
                     {{ $pinjam->keperluan }}
                   </td>
-                  <td class="align-middle text-secondary text-m">
+                  <td class="align-middle text-center text-secondary text-m">
                     {{ $pinjam->mulai_pinjam }}
                   </td>
-                  <td class="align-middle text-secondary text-m">
-                    <a href="{{ url('/dashboard/pinjaman/download/' . $pinjam->rundown) }}">unduh</a>
+                  <td class="align-middle text-center text-secondary text-m">
+                    <a href="{{ url('/dashboard/pinjaman/download/' . $pinjam->rundown) }}"><i
+                        class="fas fa-download"></i></a>
                   </td>
-                  <td class="align-middle">
+                  <td
+                    class="mt-3 text-center text-white text-m badge
+                    @if ($pinjam->status == 'Diterima') bg-gradient-success
+                    @elseif($pinjam->status == 'Ditolak') bg-gradient-danger
+                    @else bg-gradient-warning @endif">
+                    {{ $pinjam->status }}
+                  </td>
+                  <td class="align-middle text-center">
                     <button class="btn btn-danger">
                       <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip"
                         data-original-title="Edit user">
@@ -70,6 +80,7 @@
                       </a>
                     </button>
                   </td>
+
                 </tr>
               @endforeach
             </tbody>

@@ -8,6 +8,6 @@ class FileController extends Controller
 {
   public function downloadFile($id)
   {
-    return Storage::download("rundowns/" . $id);
+    return Storage::download("rundowns/" . $id, 'rundown.pdf');
   }
 }
