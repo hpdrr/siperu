@@ -65,7 +65,7 @@
         @if ($user === 1)
           <a class="btn btn-primary btn-xl text-uppercase" href="/dashboard">admin</a>
         @else
-          <a class="btn btn-primary btn-xl text-uppercase" href="/dashboard">{{ $user }}</a>
+          <a class="btn btn-primary btn-xl text-uppercase" href="#ruangan">Ajukan Peminjaman</a>
         @endif
       @endauth
     </div>
@@ -193,7 +193,7 @@
     <div class="modal fade" id="modalPinjam-{{ $ruang->kode_ruangan }}" data-bs-backdrop="static"
       data-bs-keyboard="true" tabindex="-1" aria-labelledby="modalPinjamLabel" aria-hidden="true">
       <div class="modal-dialog">
-        <div class="modal-content">
+        <div class="modal-content bg-dark text-white">
           <div class="modal-header">
             <h1 class="modal-title fs-5" id="modalPinjamLabel">{{ $ruang->nama_ruangan }}</h1>
           </div>
@@ -202,27 +202,27 @@
               @csrf
               <div class="mb-3">
                 <label for="kode" class="form-label">Kode Ruangan </label>
-                <input class="form-control border p-1" name="kode" value="{{ $ruang->kode_ruangan }}"
-                  type="text" id="kodeRuangan" disabled>
+                <input class="form-control border p-1" name="kode_ruangan" value="{{ $ruang->kode_ruangan }}"
+                  type="text" id="kodeRuangan">
               </div>
               <div class="mb-3">
-                <label for="nim" class="form-label">NIM Peminjam</label>
-                <input type="text" name="nim" class="form-control border p-1" value="{{ $user->nim }}"
-                  id="nimPeminjam" required disabled>
+                <label for="user_id" class="form-label">NIM Peminjam</label>
+                <input type="text" name="user_id" class="form-control border p-1" value="{{ $user->nim }}"
+                  id="userIdPeminjam">
               </div>
               <div class="mb-3">
                 <label for="tanggalPinjam" class="form-label">Masukkan tanggal</label>
-                <input type="date" name="tanggalPinjam" class="form-control border p-1" id="tanggalPinjamRuangan"
+                <input type="date" name="mulai_pinjam" class="form-control border p-1" id="tanggalPinjamRuangan"
                   required>
               </div>
               <div class="mb-3">
                 <label for="agenda" class="form-label">Agenda</label>
-                <input type="text" name="agenda" class="form-control border p-1" id="agendaRuangan" required>
+                <input type="text" name="keperluan" class="form-control border p-1" id="agendaRuangan" required>
               </div>
               <div class="mb-3">
                 <label for="rundown" class="form-label">Tambahkan File Rundown acara</label>
                 <input class="form-control border p-1 @error('rundown') is-invalid @enderror" name="rundown"
-                  type="file" id="rundownAcara">
+                  type="file" accept="application/pdf" id="rundownAcara">
               </div>
               @error('rundown')
                 <div class="invalid-feedback">

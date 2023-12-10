@@ -42,7 +42,6 @@ class DashboardRuanganController extends Controller
   public function store(Request $request)
   {
     $room = new Ruangan();
-
     // mass assignment
     /**
      * pengecekan kode ruangan yang telah tersedia
@@ -54,10 +53,6 @@ class DashboardRuanganController extends Controller
     /**
      * validasi tipe file
      */
-    // $request->validate([
-    //   'image' => 'required|image|file|max:2048',
-    // ]);
-
     $validated = $request->validate([
       'image' => 'required|image|file|max:2048',
       'nama_ruangan' => 'required',

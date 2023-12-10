@@ -4,6 +4,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DashboardRuanganController;
 use App\Http\Controllers\LandingController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\PeminjamanController;
 use App\Http\Controllers\RegisterController;
 use App\Models\Ruangan;
 use Illuminate\Support\Facades\Route;
@@ -44,6 +45,8 @@ Route::post('/register', [RegisterController::class, 'store']);
 Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('auth');
 
 Route::resource('/dashboard/ruangan', DashboardRuanganController::class)->middleware('auth');
+
+Route::resource('/', PeminjamanController::class)->middleware('auth');
 
 
 // buatan sendiri
