@@ -201,14 +201,14 @@
             <form method="POST" action="/" enctype="multipart/form-data">
               @csrf
               <div class="mb-3">
-                <label for="kode" class="form-label">Kode Ruangan </label>
+                <label for="kode" class="form-label" hidden>Kode Ruangan </label>
                 <input class="form-control border p-1" name="kode_ruangan" value="{{ $ruang->kode_ruangan }}"
-                  type="text" id="kodeRuangan">
+                  type="text" id="kodeRuangan" hidden>
               </div>
               <div class="mb-3">
-                <label for="user_id" class="form-label">NIM Peminjam</label>
+                <label for="user_id" class="form-label" hidden>NIM Peminjam</label>
                 <input type="text" name="user_id" class="form-control border p-1" value="{{ $user->nim }}"
-                  id="userIdPeminjam">
+                  id="userIdPeminjam" hidden>
               </div>
               <div class="mb-3">
                 <label for="tanggalPinjam" class="form-label">Masukkan tanggal</label>
