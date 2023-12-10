@@ -65,7 +65,7 @@
       @endguest
       @auth
         @if ($user->role_id === 1)
-          <a class="btn btn-primary btn-xl text-uppercase" href="/dashboard">admin</a>
+          <a class="btn btn-primary btn-xl text-uppercase" href="/dashboard">Dashboard</a>
         @else
           <a class="btn btn-primary btn-xl text-uppercase" href="#ruangan">Ajukan Peminjaman</a>
         @endif

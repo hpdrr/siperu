@@ -38,7 +38,7 @@
       </div>
       <hr class="dark horizontal my-0" />
       <div class="card-footer p-3">
-        <a href="#">
+        <a href="/dashboard/pinjaman">
           <p class="mb-0">Lihat detail <i class="fa-solid fa-up-right-from-square"></i></p>
         </a>
       </div>
@@ -85,7 +85,7 @@
   {{-- end Footer --}}
 @endsection
 @section('script')
-  <script>
+  {{-- <script>
     var win = navigator.platform.indexOf("Win") > -1;
     if (win && document.querySelector("#sidenav-scrollbar")) {
       var options = {
@@ -93,5 +93,5 @@
       };
       Scrollbar.init(document.querySelector("#sidenav-scrollbar"), options);
     }
-  </script>
+  </script> --}}
 @endsection

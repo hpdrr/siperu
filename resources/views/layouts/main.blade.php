@@ -56,7 +56,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-white py-3 @yield('table-active')" href="/table">
+          <a class="nav-link text-white py-3 @yield('pinjaman-active')" href="/dashboard/pinjaman">
             <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
               <i class="material-icons opacity-10">format_list_bulleted</i>
             </div>

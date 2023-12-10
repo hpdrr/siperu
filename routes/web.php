@@ -5,6 +5,7 @@ use App\Http\Controllers\DashboardRuanganController;
 use App\Http\Controllers\LandingController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PeminjamanController;
+use App\Http\Controllers\PinjamanController;
 use App\Http\Controllers\RegisterController;
 use App\Models\Ruangan;
 use Illuminate\Support\Facades\Route;
@@ -35,23 +36,19 @@ Route::post('/logout', [LoginController::class, 'logout']);
 Route::get('/register', [RegisterController::class, 'index'])->middleware('guest');
 Route::post('/register', [RegisterController::class, 'store']);
 
-// Route::get('/dashboard', function () {
-//   return view('dashboard', [
-//     'jumlah_ruangan' => Ruangan::count(),
-//   ]);
-// })->middleware('auth');
-
 Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('auth');
 
 Route::resource('/dashboard/ruangan', DashboardRuanganController::class)->middleware('auth');
 
 Route::resource('/', PeminjamanController::class);
 
+Route::resource('/dashboard/pinjaman', PinjamanController::class)->middleware('auth');
+
 
 // buatan sendiri
-Route::get('/table', function () {
-  return view('tables');
-});
+// Route::get('/dashboard/pinjaman', function () {
+//   return view('pinjaman');
+// });
 
 Route::get('/testing', function () {
   return view('testing', [
