@@ -72,27 +72,6 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-white py-3" href="../pages/notifications.html">
-            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="material-icons opacity-10">notifications</i>
-            </div>
-            <span class="nav-link-text ms-1">Notifications</span>
-          </a>
-        </li>
-        <li class="nav-item mt-3">
-          <h6 class="ps-4 ms-2 text-uppercase text-xs text-white font-weight-bolder opacity-8">
-            Akun
-          </h6>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link text-white py-3" href="../pages/profile.html">
-            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="material-icons opacity-10">person</i>
-            </div>
-            <span class="nav-link-text ms-1">Profile</span>
-          </a>
-        </li>
-        <li class="nav-item">
           <form action="/logout" method="POST">
             @csrf
             <button class="btn nav-link text-white py-3">
@@ -103,14 +82,6 @@
             </button>
           </form>
         </li>
-        {{-- <li class="nav-item">
-          <a class="nav-link text-white py-3" type="submit">
-            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="material-icons opacity-10">logout</i>
-            </div>
-            <span class="nav-link-text ms-1">Logout</span>
-          </a>
-        </li> --}}
       </ul>
     </div>
     </div>
@@ -148,16 +119,6 @@
                   <i class="sidenav-toggler-line"></i>
                   <i class="sidenav-toggler-line"></i>
                 </div>
-              </a>
-            </li>
-            <li class="nav-item px-3 d-flex align-items-center">
-              <a href="javascript:;" class="nav-link text-body p-0">
-                <i class="fa fa-cog fixed-plugin-button-nav cursor-pointer"></i>
-              </a>
-            </li>
-            <li class="nav-item d-flex align-items-center">
-              <a href="../pages/sign-in.html" class="nav-link text-body font-weight-bold px-0">
-                <i class="fa fa-user me-sm-1"></i>
               </a>
             </li>
           </ul>

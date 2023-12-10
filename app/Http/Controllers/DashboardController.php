@@ -37,6 +37,7 @@ class DashboardController extends Controller
         'jumlah_ruangan' => Ruangan::count(),
         'time' => $now,
         'jumlah_peminjaman' => Peminjaman::count(),
+        'jumlah_menunggu' => Peminjaman::where('status', 'menunggu')->count(),
       ]);
     }
     return back();

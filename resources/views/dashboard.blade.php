@@ -53,12 +53,12 @@
         </div>
         <div class="text-end pt-1">
           <p class="text-sm mb-0 text-capitalize">Menunggu Persetujuan</p>
-          <h4 class="mb-0">9</h4>
+          <h4 class="mb-0">{{ $jumlah_menunggu }}</h4>
         </div>
       </div>
       <hr class="dark horizontal my-0" />
       <div class="card-footer p-3">
-        <a href="#">
+        <a href="/dashboard/pinjaman">
           <p class="mb-0">Lihat detail <i class="fa-solid fa-up-right-from-square"></i></p>
         </a>
       </div>

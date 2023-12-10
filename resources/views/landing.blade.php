@@ -56,7 +56,7 @@
     {{-- <span class="mask bg-gradient-dark opacity-6"></span> --}}
     <div class="container">
       <div class="masthead-subheading">Selamat Datang di</div>
-      <div class="masthead-heading text-uppercase mb-1"><a href="https://www.sif.uin-suska.ac.id"
+      <div class="masthead-heading text-uppercase mb-1"><a href="https://sif.uin-suska.ac.id"
           style="text-decoration: none; color: #2776BF;">SI</a>PERU</div>
       <div class="masthead-subheading mb-5" style="font-style: normal; font-size: 1.5rem;">Sistem Informasi Peminjaman
         Ruangan</div>
@@ -77,8 +77,8 @@
     <div class="container">
       <div class="text-center">
         <h2 class="section-heading text-uppercase">Fitur</h2>
-        <h3 class="section-subheading text-muted">Fitur-fitur yang tersedia pada <span
-            style="color: #2776BF;">SI</span>PERU</h3>
+        <h3 class="section-subheading text-muted">Fitur-fitur yang tersedia pada <a href="https://sif.uin-suska.ac.id"
+            style="color: #2776BF; text-decoration:none;">SI</a>PERU</h3>
       </div>
       <div class="row text-center">
         <div class="col-md-4">
