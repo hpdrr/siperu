@@ -34,6 +34,17 @@
         <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
           <li class="nav-item"><a class="nav-link" href="#fitur">fitur</a></li>
           <li class="nav-item"><a class="nav-link" href="#ruangan">Ruangan</a></li>
+          {{-- <li class="nav-item"><a class="nav-link" href="/logout"><i class="fas fa-right-from-bracket"></i></a></li> --}}
+          <li class="nav-item">
+            <form action="/logout" method="POST">
+              @csrf
+              <button class="btn nav-link text-white">
+                <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                  <i class="fas fa-right-from-bracket"></i>
+                </div>
+              </button>
+            </form>
+          </li>
         </ul>
       </div>
     </div>
@@ -51,7 +62,11 @@
         <a class="btn btn-primary btn-xl text-uppercase" href="/login">Login</a>
       @endguest
       @auth
-        <a class="btn btn-primary btn-xl text-uppercase" href="/dashboard">Dashboard</a>
+        @if ($user === 1)
+          <a class="btn btn-primary btn-xl text-uppercase" href="/dashboard">admin</a>
+        @else
+          <a class="btn btn-primary btn-xl text-uppercase" href="/dashboard">user</a>
+        @endif
       @endauth
     </div>
   </header>
