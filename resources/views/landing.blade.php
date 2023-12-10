@@ -24,7 +24,7 @@
   <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
     <div class="container">
       <a class="navbar-brand" href="#page-top"><img src="{{ asset('assets/img/Logo-SIF-noBg.png') }}"
-          alt="..." /></a>
+          alt="Logo SIF" /></a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive"
         aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         Menu
@@ -47,7 +47,12 @@
           style="text-decoration: none; color: #2776BF;">SI</a>PERU</div>
       <div class="masthead-subheading mb-5" style="font-style: normal; font-size: 1.5rem;">Sistem Informasi Peminjaman
         Ruangan</div>
-      <a class="btn btn-primary btn-xl text-uppercase" href="/login">Login</a>
+      @guest
+        <a class="btn btn-primary btn-xl text-uppercase" href="/login">Login</a>
+      @endguest
+      @auth
+        <a class="btn btn-primary btn-xl text-uppercase" href="/dashboard">Dashboard</a>
+      @endauth
     </div>
   </header>
   <!-- fitur-->
@@ -111,95 +116,6 @@
             </div>
           </div>
         @endforeach
-        <!-- Portfolio item 1-->
-        {{-- <div class="portfolio-item">
-            <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal1">
-              <div class="portfolio-hover">
-                <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
-              </div>
-              <img class="img-fluid" src="{{ asset('storage/' . $ruang->image) }}" alt="..." />
-            </a>
-            <div class="portfolio-caption">
-              <div class="portfolio-caption-heading">Threads</div>
-              <div class="portfolio-caption-subheading text-muted">Illustration</div>
-            </div>
-          </div>
-        </div> --}}
-        {{-- <div class="col-lg-4 col-sm-6 mb-4">
-          <!-- Portfolio item 2-->
-          <div class="portfolio-item">
-            <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal2">
-              <div class="portfolio-hover">
-                <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
-              </div>
-              <img class="img-fluid" src="assets/img/portfolio/2.jpg" alt="..." />
-            </a>
-            <div class="portfolio-caption">
-              <div class="portfolio-caption-heading">Explore</div>
-              <div class="portfolio-caption-subheading text-muted">Graphic Design</div>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-4 col-sm-6 mb-4">
-          <!-- Portfolio item 3-->
-          <div class="portfolio-item">
-            <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal3">
-              <div class="portfolio-hover">
-                <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
-              </div>
-              <img class="img-fluid" src="assets/img/portfolio/3.jpg" alt="..." />
-            </a>
-            <div class="portfolio-caption">
-              <div class="portfolio-caption-heading">Finish</div>
-              <div class="portfolio-caption-subheading text-muted">Identity</div>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-4 col-sm-6 mb-4 mb-lg-0">
-          <!-- Portfolio item 4-->
-          <div class="portfolio-item">
-            <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal4">
-              <div class="portfolio-hover">
-                <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
-              </div>
-              <img class="img-fluid" src="assets/img/portfolio/4.jpg" alt="..." />
-            </a>
-            <div class="portfolio-caption">
-              <div class="portfolio-caption-heading">Lines</div>
-              <div class="portfolio-caption-subheading text-muted">Branding</div>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-4 col-sm-6 mb-4 mb-sm-0">
-          <!-- Portfolio item 5-->
-          <div class="portfolio-item">
-            <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal5">
-              <div class="portfolio-hover">
-                <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
-              </div>
-              <img class="img-fluid" src="assets/img/portfolio/5.jpg" alt="..." />
-            </a>
-            <div class="portfolio-caption">
-              <div class="portfolio-caption-heading">Southwest</div>
-              <div class="portfolio-caption-subheading text-muted">Website Design</div>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-4 col-sm-6">
-          <!-- Portfolio item 6-->
-          <div class="portfolio-item">
-            <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal6">
-              <div class="portfolio-hover">
-                <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
-              </div>
-              <img class="img-fluid" src="assets/img/portfolio/6.jpg" alt="..." />
-            </a>
-            <div class="portfolio-caption">
-              <div class="portfolio-caption-heading">Window</div>
-              <div class="portfolio-caption-subheading text-muted">Photography</div>
-            </div>
-          </div>
-        </div> --}}
       </div>
     </div>
   </section>
@@ -242,19 +158,11 @@
                   <img class="img-fluid d-block mx-auto" src="{{ asset('storage/' . $ruang->image) }}"
                     alt="{{ $ruang->nama_ruangan }}" />
                   <ul class="list-inline">
-                    <li>
-                      Kapasitas:
-                      <strong>{{ $ruang->kapasitas_ruangan }}</strong>
-
-                    </li>
-                    <li>
-                      Lokasi:
-                      <strong>{{ $ruang->lokasi }}</strong>
-                    </li>
+                    <li>Kapasitas:<strong>{{ $ruang->kapasitas_ruangan }}</strong></li>
+                    <li>Lokasi:<strong>{{ $ruang->lokasi }}</strong></li>
                   </ul>
-                  <button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal" type="button">
-                    Kembali
-                  </button>
+                  <button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal"
+                    type="button">Kembali</button>
                 </div>
               </div>
             </div>
