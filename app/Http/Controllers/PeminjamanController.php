@@ -18,14 +18,7 @@ class PeminjamanController extends Controller
     if (Auth::check()) {
       $role = Auth::user();
     }
-    $userObject = $table_peminjaman::select('user_id')->get();
-    $userId = [];
-    foreach ($userObject as $user) {
-      array_push($userId, $user->user_id);
-    }
-
-    // dd($userId);
-
+    $nama_ruangan = Ruangan::find(7);
     return view('landing', [
       'ruangan' => Ruangan::select('image', 'nama_ruangan', 'kapasitas_ruangan', 'lokasi', 'kode_ruangan')->get(),
       'user' => $role,
@@ -36,8 +29,7 @@ class PeminjamanController extends Controller
         'mulai_pinjam',
         'status'
       )->get(),
-      'userId' => $userId,
-
+      'namaRuangan' => $nama_ruangan,
     ]);
   }
 
