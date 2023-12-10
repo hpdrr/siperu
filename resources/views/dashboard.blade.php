@@ -70,11 +70,10 @@
       <div class="card z-index-2">
         <div class="card-body">
           <h1 class="mb-0">Selamat {{ $time }}, {{ ucfirst(auth()->user()->nama) }}</h1>
-          <p class="text-m">Disini harusnya tertera hari, tanggal bulan tahun</p>
           <hr class="dark horizontal" />
           <div class="d-flex">
             <i class="material-icons text-sm my-auto me-1">schedule</i>
-            <p class="mb-0 text-sm">campaign sent 2 days ago</p>
+            <p class="mb-0 text-sm">{{ $now }}</p>
           </div>
         </div>
       </div>

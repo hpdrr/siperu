@@ -13,6 +13,8 @@ class DashboardController extends Controller
   public function index()
   {
     $now = Carbon::now();
+    $time = Carbon::now()->format('d-M-Y');
+    $day = Carbon::now()->format('l');
     $now->timezone = 'Asia/Jakarta';
     if ($now->hour >= 0 && $now->hour < 12) {
       $now = 'Pagi';
@@ -23,14 +25,6 @@ class DashboardController extends Controller
     } else {
       $now = 'Malam';
     }
-    // if (Auth::user() === 1) {
-    //   return view('dashboard', [
-    //     'title' => 'Dashboard',
-    //     'jumlah_ruangan' => Ruangan::count(),
-    //     'time' => $now
-    //   ]);
-    // }
-    // return back();
     if (Auth::user()->role_id === 1) {
       return view('dashboard', [
         'title' => 'Dashboard',
@@ -38,6 +32,8 @@ class DashboardController extends Controller
         'time' => $now,
         'jumlah_peminjaman' => Peminjaman::count(),
         'jumlah_menunggu' => Peminjaman::where('status', 'menunggu')->count(),
+        'now' => $time,
+        'day' => $day,
       ]);
     }
     return back();

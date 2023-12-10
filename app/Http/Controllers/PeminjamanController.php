@@ -12,15 +12,32 @@ class PeminjamanController extends Controller
   /**
    * Display a listing of the resource.
    */
-  public function index()
+  public function index(Peminjaman $table_peminjaman)
   {
     $role = 0;
     if (Auth::check()) {
       $role = Auth::user();
     }
+    $userObject = $table_peminjaman::select('user_id')->get();
+    $userId = [];
+    foreach ($userObject as $user) {
+      array_push($userId, $user->user_id);
+    }
+
+    // dd($userId);
+
     return view('landing', [
       'ruangan' => Ruangan::select('image', 'nama_ruangan', 'kapasitas_ruangan', 'lokasi', 'kode_ruangan')->get(),
       'user' => $role,
+      'peminjaman' => $table_peminjaman::select(
+        'user_id',
+        'kode_ruangan',
+        'keperluan',
+        'mulai_pinjam',
+        'status'
+      )->get(),
+      'userId' => $userId,
+
     ]);
   }
 

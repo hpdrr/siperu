@@ -19,7 +19,7 @@
   <link href="{{ asset('assets/css/landing.css') }}" rel="stylesheet" />
 </head>
 
-<body id="page-top">
+<body id="page-top" style="background-color: #eaeaea">
   <!-- Navigation-->
   <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
     <div class="container">
@@ -36,6 +36,9 @@
           <li class="nav-item"><a class="nav-link" href="#ruangan">Ruangan</a></li>
           {{-- <li class="nav-item"><a class="nav-link" href="/logout"><i class="fas fa-right-from-bracket"></i></a></li> --}}
           @auth
+            @if (!($user->role_id === 1))
+              <li class="nav-item"><a class="nav-link" href="#status">Status Peminjaman</a></li>
+            @endif
             <li class="nav-item">
               <form action="/logout" method="POST">
                 @csrf
@@ -72,6 +75,8 @@
       @endauth
     </div>
   </header>
+  {{-- notifikasi --}}
+
   <!-- fitur-->
   <section class="page-section" id="fitur" style="background-color: #eaeaea;">
     <div class="container">
@@ -108,6 +113,66 @@
       </div>
     </div>
   </section>
+  {{-- notifikasi --}}
+  @auth
+    @if (!($user->role_id === 1))
+
+      <section class="page-section" id="status" style="background-color: #eaeaea;">
+        <div class="container">
+          <div class="text-center">
+            <h2 class="section-heading text-uppercase">Status Peminjaman</h2>
+            {{-- {{ $userId }} --}}
+            {{-- buat disini --}}
+            @if (in_array($user->nim, $userId))
+              {{-- <div class="alert alert-success alert-dismissible fade show" role="alert">
+          <strong>Selamat!</strong> Pengajuan peminjaman ruangan anda telah berhasil diajukan. Silahkan tunggu konfirmasi
+          dari admin.
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div> --}}
+
+              <div class="table-responsive p-0 col-10 d-flex mx-auto">
+                <table class="table table-striped table-hover align-items-center mb-0">
+                  <thead class="table-info border">
+                    <th class="text-center text-uppercase text-l font-weight-bolder">No</th>
+                    <th class="text-center text-uppercase text-l font-weight-bolder">Kode Peminjaman</th>
+                    <th class="text-center text-uppercase text-l font-weight-bolder">Tanggal</th>
+                    <th class="text-center text-uppercase text-l font-weight-bolder">Agenda</th>
+                    <th class="text-center text-uppercase text-l font-weight-bolder">Status</th>
+                  </thead>
+                  <tbody>
+                    @foreach ($peminjaman as $pinjam)
+                      <tr>
+                        <td class="text-center text-sm font-weight-bold">{{ $loop->iteration }}</td>
+                        <td class="text-center text-m font-weight-bold ps-3">{{ $pinjam->kode_ruangan }}</td>
+                        <td class="align-middle text-center text-sm font-weight-bold">
+                          {{ $pinjam->mulai_pinjam }}
+                        </td>
+                        <td class="align-middle text-center text-m">{{ $pinjam->keperluan }}</td>
+                        <td class="mt-3 text-center text-m font-weight-bold">
+                          {{ $pinjam->status }}</td>
+                      </tr>
+                    @endforeach
+                  </tbody>
+                </table>
+              </div>
+            @else
+              {{-- <h6>Anda belum memiliki pengajuan peminjaman ruangan</h6> --}}
+              <div class="alert alert-warning" role="alert">
+                Anda belum memiliki pengajuan peminjaman ruangan
+              </div>
+            @endif
+          </div>
+          {{-- <div class="row text-center">
+            <div class="col-md-4 ">
+              <h4 class="my-3">Pengajuan Peminjaman</h4>
+              <p class="text-muted">Unggah berkas untuk persyaratan pengajuan peminjaman</p>
+            </div>
+          </div> --}}
+        </div>
+      </section>
+    @endif
+
+  @endauth
   <!-- ruangan Grid-->
   <section class="page-section bg-light" id="ruangan">
     <div class="container">
