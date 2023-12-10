@@ -65,7 +65,7 @@
         @if ($user === 1)
           <a class="btn btn-primary btn-xl text-uppercase" href="/dashboard">admin</a>
         @else
-          <a class="btn btn-primary btn-xl text-uppercase" href="/dashboard">user</a>
+          <a class="btn btn-primary btn-xl text-uppercase" href="/dashboard">{{ $user }}</a>
         @endif
       @endauth
     </div>
@@ -116,21 +116,19 @@
       <div class="row">
         @foreach ($ruangan as $ruang)
           <div class="col-lg-4 col-sm-6 mb-4">
-            <div class="portfolio-item">
-              <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal{{ $loop->iteration }}">
-                <div class="portfolio-hover">
-                  <div class="portfolio-hover-content"></div>
+            <div class="ruangan-item">
+              <a class="ruangan-link" data-bs-toggle="modal" href="#ruanganModal{{ $loop->iteration }}">
+                <div class="ruangan-hover">
+                  <div class="ruangan-hover-content"></div>
                 </div>
                 <img class="img-fluid border-radius-lg" src="{{ asset('storage/' . $ruang->image) }}"
                   alt="{{ $ruang->image }}" />
               </a>
-              <div class="portfolio-caption">
-                <div class="portfolio-caption-heading">{{ $ruang->nama_ruangan }}</div>
-                <div class="portfolio-caption-subheading text-muted">{{ $ruang->lokasi }}</div>
+              <div class="ruangan-caption">
+                <div class="ruangan-caption-heading">{{ $ruang->nama_ruangan }}</div>
+                <div class="ruangan-caption-subheading text-muted">{{ $ruang->lokasi }}</div>
               </div>
             </div>
-            {{-- modal's button --}}
-
           </div>
         @endforeach
       </div>
@@ -160,28 +158,82 @@
   </footer>
   <!-- RUangan Modals-->
   @foreach ($ruangan as $ruang)
-    <div class="portfolio-modal modal fade" id="portfolioModal{{ $loop->iteration }}" tabindex="-1" role="dialog"
+    <div class="modal fade col-12" id="ruanganModal{{ $loop->iteration }}" tabindex="-1" role="dialog"
       aria-hidden="true">
       <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="close-modal" data-bs-dismiss="modal"><i class="fas fa-close"></i>
+        <div class="modal-content bg-dark text-white">
+          <div class="close-modal d-flex justify-content-end p-2" data-bs-dismiss="modal">
+            <i class="fas fa-close"></i>
           </div>
           <div class="container">
-            <div class="row justify-content-center">
-              <div class="col-6">
-                <div class="modal-body">
-                  <h2 class="text-uppercase">{{ $ruang->nama_ruangan }}</h2>
-                  <img class="img-fluid d-block mx-auto" src="{{ asset('storage/' . $ruang->image) }}"
-                    alt="{{ $ruang->nama_ruangan }}" />
-                  <ul class="list-inline">
-                    <li>Kapasitas:<strong>{{ $ruang->kapasitas_ruangan }}</strong></li>
-                    <li>Lokasi:<strong>{{ $ruang->lokasi }}</strong></li>
-                  </ul>
-                  <button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal"
-                    type="button">Kembali</button>
+            <div class="row ">
+              <div class="col-12">
+                <div class="modal-body d-flex justify-content-center flex-column">
+                  <div>
+                    <h2 class="text-uppercase">{{ $ruang->nama_ruangan }}</h2>
+                    <img class="img-fluid d-block border-radius-lg mx-auto mb-3"
+                      src="{{ asset('storage/' . $ruang->image) }}" alt="{{ $ruang->nama_ruangan }}" />
+                    <ul class="list-inline">
+                      <li>Kapasitas: <strong>{{ $ruang->kapasitas_ruangan }}</strong></li>
+                      <li>Lokasi: <strong>{{ $ruang->lokasi }}</strong></li>
+                    </ul>
+                  </div>
+                  <button type="button" class="btn btn-warning btn-sm btn-edit text-white shadow p-2 mb-3"
+                    data-bs-toggle="modal" data-bs-target="#modalPinjam-{{ $ruang->kode_ruangan }}">
+                    Pinjam
+                  </button>
                 </div>
               </div>
             </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    {{-- modal pinjam --}}
+    <div class="modal fade" id="modalPinjam-{{ $ruang->kode_ruangan }}" data-bs-backdrop="static"
+      data-bs-keyboard="true" tabindex="-1" aria-labelledby="modalPinjamLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="modalPinjamLabel">{{ $ruang->nama_ruangan }}</h1>
+          </div>
+          <div class="modal-body">
+            <form method="POST" action="/" enctype="multipart/form-data">
+              @csrf
+              <div class="mb-3">
+                <label for="kode" class="form-label">Kode Ruangan </label>
+                <input class="form-control border p-1" name="kode" value="{{ $ruang->kode_ruangan }}"
+                  type="text" id="kodeRuangan" disabled>
+              </div>
+              <div class="mb-3">
+                <label for="nim" class="form-label">NIM Peminjam</label>
+                <input type="text" name="nim" class="form-control border p-1" value="{{ $user->nim }}"
+                  id="nimPeminjam" required disabled>
+              </div>
+              <div class="mb-3">
+                <label for="tanggalPinjam" class="form-label">Masukkan tanggal</label>
+                <input type="date" name="tanggalPinjam" class="form-control border p-1" id="tanggalPinjamRuangan"
+                  required>
+              </div>
+              <div class="mb-3">
+                <label for="agenda" class="form-label">Agenda</label>
+                <input type="text" name="agenda" class="form-control border p-1" id="agendaRuangan" required>
+              </div>
+              <div class="mb-3">
+                <label for="rundown" class="form-label">Tambahkan File Rundown acara</label>
+                <input class="form-control border p-1 @error('rundown') is-invalid @enderror" name="rundown"
+                  type="file" id="rundownAcara">
+              </div>
+              @error('rundown')
+                <div class="invalid-feedback">
+                  {{ $message }}
+                </div>
+              @enderror
+              <button type="submit" class="btn btn-success shadow">Ajukan peminjaman</button>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
           </div>
         </div>
       </div>

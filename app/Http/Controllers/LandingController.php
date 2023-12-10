@@ -13,7 +13,7 @@ class LandingController extends Controller
   {
     $role = 0;
     if (Auth::check()) {
-      $role = Auth::user()->role_id;
+      $role = Auth::user();
     }
     return view('landing', [
       'ruangan' => Ruangan::select('image', 'nama_ruangan', 'kapasitas_ruangan', 'lokasi', 'kode_ruangan')->get(),
