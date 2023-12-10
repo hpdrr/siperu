@@ -94,22 +94,38 @@
         <h3 class="section-subheading text-muted">Daftar Ruangan yang dapat dipinjam</h3>
       </div>
       <div class="row">
-        <div class="col-lg-4 col-sm-6 mb-4">
-          <!-- Portfolio item 1-->
-          <div class="portfolio-item">
+        @foreach ($ruangan as $ruang)
+          <div class="col-lg-4 col-sm-6 mb-4">
+            <div class="portfolio-item">
+              <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal{{ $loop->iteration }}">
+                <div class="portfolio-hover">
+                  <div class="portfolio-hover-content"></div>
+                </div>
+                <img class="img-fluid border-radius-lg" src="{{ asset('storage/' . $ruang->image) }}"
+                  alt="{{ $ruang->image }}" />
+              </a>
+              <div class="portfolio-caption">
+                <div class="portfolio-caption-heading">{{ $ruang->nama_ruangan }}</div>
+                <div class="portfolio-caption-subheading text-muted">{{ $ruang->lokasi }}</div>
+              </div>
+            </div>
+          </div>
+        @endforeach
+        <!-- Portfolio item 1-->
+        {{-- <div class="portfolio-item">
             <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal1">
               <div class="portfolio-hover">
                 <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
               </div>
-              <img class="img-fluid" src="assets/img/portfolio/1.jpg" alt="..." />
+              <img class="img-fluid" src="{{ asset('storage/' . $ruang->image) }}" alt="..." />
             </a>
             <div class="portfolio-caption">
               <div class="portfolio-caption-heading">Threads</div>
               <div class="portfolio-caption-subheading text-muted">Illustration</div>
             </div>
           </div>
-        </div>
-        <div class="col-lg-4 col-sm-6 mb-4">
+        </div> --}}
+        {{-- <div class="col-lg-4 col-sm-6 mb-4">
           <!-- Portfolio item 2-->
           <div class="portfolio-item">
             <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal2">
@@ -183,7 +199,7 @@
               <div class="portfolio-caption-subheading text-muted">Photography</div>
             </div>
           </div>
-        </div>
+        </div> --}}
       </div>
     </div>
   </section>
@@ -211,7 +227,43 @@
   </footer>
   <!-- Portfolio Modals-->
   <!-- Portfolio item 1 modal popup-->
-  <div class="portfolio-modal modal fade" id="portfolioModal1" tabindex="-1" role="dialog" aria-hidden="true">
+  @foreach ($ruangan as $ruang)
+    <div class="portfolio-modal modal fade" id="portfolioModal{{ $loop->iteration }}" tabindex="-1" role="dialog"
+      aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="close-modal" data-bs-dismiss="modal"><i class="fas fa-close"></i>
+          </div>
+          <div class="container">
+            <div class="row justify-content-center">
+              <div class="col-6">
+                <div class="modal-body">
+                  <h2 class="text-uppercase">{{ $ruang->nama_ruangan }}</h2>
+                  <img class="img-fluid d-block mx-auto" src="{{ asset('storage/' . $ruang->image) }}"
+                    alt="{{ $ruang->nama_ruangan }}" />
+                  <ul class="list-inline">
+                    <li>
+                      Kapasitas:
+                      <strong>{{ $ruang->kapasitas_ruangan }}</strong>
+
+                    </li>
+                    <li>
+                      Lokasi:
+                      <strong>{{ $ruang->lokasi }}</strong>
+                    </li>
+                  </ul>
+                  <button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal" type="button">
+                    Kembali
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  @endforeach
+  {{-- <div class="portfolio-modal modal fade" id="portfolioModal1" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="close-modal" data-bs-dismiss="modal"><img src="assets/img/close-icon.svg" alt="Close modal" />
@@ -437,7 +489,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> --}}
   <!-- Bootstrap core JS-->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
   <!-- Core theme JS-->
