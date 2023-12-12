@@ -33,12 +33,10 @@
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
           <li class="nav-item"><a class="nav-link" href="#fitur">fitur</a></li>
+          <li class="nav-item"><a class="nav-link" href="#status">Status Peminjaman</a></li>
           <li class="nav-item"><a class="nav-link" href="#ruangan">Ruangan</a></li>
           {{-- <li class="nav-item"><a class="nav-link" href="/logout"><i class="fas fa-right-from-bracket"></i></a></li> --}}
           @auth
-            @if (!($user->role_id === 1))
-              <li class="nav-item"><a class="nav-link" href="#status">Status Peminjaman</a></li>
-            @endif
             <li class="nav-item">
               <form action="/logout" method="POST">
                 @csrf
