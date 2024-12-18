@@ -27,7 +27,7 @@ class LoginController extends Controller
         $request->session()->regenerate();
         return redirect()->intended('/');
       }
-      return redirect('/lost');
+      return redirect('/');
     }
     return back()->with('loginError', 'Login Gagal! Silahkan cek kembali NIM atau Password Anda.');
   }

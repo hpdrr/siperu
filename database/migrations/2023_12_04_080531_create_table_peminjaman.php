@@ -15,6 +15,7 @@ return new class extends Migration
       $table->integer('kode_peminjaman', 10);
       $table->string('keperluan', 100);
       $table->timestamp('mulai_pinjam');
+      $table->string('rundown', 255);
       $table->string('status', 20);
     });
   }

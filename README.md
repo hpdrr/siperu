@@ -6,7 +6,7 @@ Proyek UAS Pemrograman WEB
 
 ### Before in system
 
-1. Tambahkan data secara manual melalui database (phpmyadmin atau yg lainnya) pada table `role` `id=1 role=mahasiswa` dan `id=2 role=admin`
+1. Tambahkan data secara manual melalui database (phpmyadmin atau yg lainnya) pada table `role` `id=1 role=admin` dan `id=2 role=mahasiswa`
 2. Run migration file dengan perintah `php artisan migrate:fresh`
 3. Run laravel project dengan perintah `php artisan serve`
 
