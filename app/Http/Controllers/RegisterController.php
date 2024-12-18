@@ -18,8 +18,9 @@ class RegisterController extends Controller
   {
     $validated = $request->validate([
       'nim' => 'required|min:11|max:11',
+      // 'role_id',
       'nama' => 'required|min:3|max:100',
-      'password' => 'required|min:8'
+      'password' => 'required|min:8',
     ]);
 
     User::create($validated);

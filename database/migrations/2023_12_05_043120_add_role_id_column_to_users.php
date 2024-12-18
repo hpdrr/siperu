@@ -6,25 +6,25 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
-    public function up(): void
-    {
-        Schema::table('users', function (Blueprint $table) {
-            $table->unsignedBigInteger('role_id')->after('name')->required();
-            $table->foreign('role_id')->references('id')->on('role')->onDelete('restrict');
-        });
-    }
+  /**
+   * Run the migrations.
+   */
+  public function up(): void
+  {
+    Schema::table('users', function (Blueprint $table) {
+      $table->unsignedBigInteger('role_id')->after('nama')->default(1);
+      $table->foreign('role_id')->references('id')->on('role')->onDelete('restrict');
+    });
+  }
 
-    /**
-     * Reverse the migrations.
-     */
-    public function down(): void
-    {
-        Schema::table('users', function (Blueprint $table) {
-            $table->dropForeign(['role_id']);
-            $table->dropColumn('role_id');
-        });
-    }
+  /**
+   * Reverse the migrations.
+   */
+  public function down(): void
+  {
+    Schema::table('users', function (Blueprint $table) {
+      $table->dropForeign(['role_id']);
+      $table->dropColumn('role_id');
+    });
+  }
 };

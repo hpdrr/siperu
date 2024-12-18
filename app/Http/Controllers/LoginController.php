@@ -25,9 +25,9 @@ class LoginController extends Controller
     if (Auth::attempt($credentials)) {
       if (Auth::user()->role_id === 1) {
         $request->session()->regenerate();
-        return redirect()->intended('/dashboard');
+        return redirect()->intended('/');
       }
-      return redirect('/');
+      return redirect('/lost');
     }
     return back()->with('loginError', 'Login Gagal! Silahkan cek kembali NIM atau Password Anda.');
   }
