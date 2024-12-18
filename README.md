@@ -10,6 +10,8 @@ Proyek UAS Pemrograman WEB
 2. Run migration file dengan perintah `php artisan migrate:fresh`
 3. Run laravel project dengan perintah `php artisan serve`
 
+Opsional: Import file `siperu.sql` ke dalam database jika tidak ingin menjalankan perintah `php artisan migrate:fresh`
+
 ### Manajemen user berdasarkan role (admin dan mahasiswa)
 
 1. Secara default user yang mendaftar akan mendapatkan role Mahasiswa, untuk menambahkan sebagai admin ubah secara manual `role_id` pada database users menjadi 2
